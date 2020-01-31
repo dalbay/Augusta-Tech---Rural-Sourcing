@@ -1,3 +1,4 @@
+using Augusta_Tech___Rural_Sourcing.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +27,9 @@ namespace Augusta_Tech___Rural_Sourcing
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-        }
+
+            services.AddTransient<IBookService, BookService>();
+        } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
