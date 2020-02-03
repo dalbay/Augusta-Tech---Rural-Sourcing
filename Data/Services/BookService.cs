@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Augusta_Tech___Rural_Sourcing.Data{
     public class BookService : IBookService
@@ -11,22 +12,32 @@ namespace Augusta_Tech___Rural_Sourcing.Data{
 
         public void DeleteBook(int id)
         {
-            throw new System.NotImplementedException();
+            var book = Data.Books.FirstOrDefault(n => n.Id == id);
+            Data.Books.Remove(book);
         }
 
         public List<Book> GetAllBooks()
         {
-            throw new System.NotImplementedException();
+            return Data.Books.ToList();
         }
 
         public Book GetBookById(int id)
         {
-            throw new System.NotImplementedException();
+            return Data.Books.FirstOrDefault(n => n.Id == id);
         }
 
         public void UpdateBook(int id, Book newBook)
         {
-            throw new System.NotImplementedException();
+            var oldBook = Data.Books.FirstOrDefault(n => n.Id == id);
+            if(oldBook != null)
+            {
+                oldBook.Title = newBook.Title;
+                oldBook.Author = newBook.Author;
+                oldBook.Description = newBook.Description;
+                oldBook.Rate = newBook.Rate;
+                oldBook.DateStart = newBook.DateStart;
+                oldBook.DateRead = newBook.DateRead;
+            }
         }
     }
 }
