@@ -5,5 +5,5 @@ interface Book {
   author: string;
   rate?: number;
   dateStart?: Date;
-  dateRate?: Date;
+  dateRead?: Date;
 }
