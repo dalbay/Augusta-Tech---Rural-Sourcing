@@ -40,6 +40,20 @@
         >
           Show
         </button>
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          (click)="updateBook(book.id)"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="deleteBook(book.id)"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>

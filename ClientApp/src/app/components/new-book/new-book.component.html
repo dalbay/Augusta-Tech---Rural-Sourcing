@@ -1,6 +1,7 @@
-<p>new-book works!</p>
-
 <div class="add-book">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    Book was not added to your library. Please try again.
+  </div>
   <form [formGroup]="addBookForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="title" class="required">Title</label>
@@ -12,6 +13,18 @@
         placeholder="Book title"
       />
     </div>
+    <div
+      *ngIf="
+        addBookForm.controls['title'].invalid &&
+        (addBookForm.controls['title'].dirty ||
+          addBookForm.controls['title'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="addBookForm.controls['title'].errors.required">
+        Book Title is required.
+      </div>
+    </div>
     <div class="form-group">
       <label for="author" class="required">Author</label>
       <input
@@ -22,6 +35,18 @@
         placeholder="Book author"
       />
     </div>
+    <div
+      *ngIf="
+        addBookForm.controls['author'].invalid &&
+        (addBookForm.controls['author'].dirty ||
+          addBookForm.controls['author'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="addBookForm.controls['author'].errors.required">
+        Book Author is required.
+      </div>
+    </div>
     <div class="form-group">
       <label for="description" class="required">Description</label>
       <input
@@ -31,6 +56,21 @@
         formControlName="description"
         placeholder="Book description"
       />
+    </div>
+    <div
+      *ngIf="
+        addBookForm.controls['description'].invalid &&
+        (addBookForm.controls['description'].dirty ||
+          addBookForm.controls['description'].touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="addBookForm.controls['description'].errors.required">
+        Book Description is required.
+      </div>
+      <div *ngIf="addBookForm.controls['description'].errors.minlength">
+        Description needs to be at least 30 chars.
+      </div>
     </div>
 
     <div class="row">
@@ -74,7 +114,13 @@
       </div>
     </div>
 
-    <button class="btn btn-success" type="submit">Add</button>
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="addBookForm.pristine || addBookForm.invalid"
+    >
+      Add
+    </button>
     <button class="btn btn-default" [routerLink]="['/books']">Cancel</button>
   </form>
 </div>

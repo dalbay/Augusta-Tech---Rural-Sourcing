@@ -32,10 +32,21 @@ export class UpdateBookComponent implements OnInit {
           data.description,
           Validators.compose([Validators.required, Validators.minLength(30)])
         ],
-        data: [data.rate],
-        dateStart: [data.dateStart],
-        dateRead: [data.dateRead]
+        rate: [data.rate],
+        dateStart: [this.formatDate(data.dateStart)],
+        dateRead: [this.formatDate(data.dateRead)]
       });
+    });
+  }
+  //create a method to change the format of dateStart
+  formatDate(date: Date) {
+    if (date) {
+      return new Date(date).toISOString().substring(0, 10);
+    }
+  }
+  onSubmit() {
+    this.service.updateBook(this.updateBookForm.value).subscribe(data => {
+      this.router.navigate(["/books"]);
     });
   }
 }

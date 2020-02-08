@@ -1,3 +1,4 @@
+using System;
 using Augusta_Tech___Rural_Sourcing.Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,19 @@ namespace Augusta_Tech___Rural_Sourcing.Controllers
         [HttpPost("AddBook")]
         public IActionResult AddBook([FromBody]Book book)
         {
-            _service.AddBook(book);
-            return Ok();
+            try
+            {
+                if (book.Author != null && book.Author != null && book.Description != null)
+                {
+                    _service.AddBook(book);
+                    return Ok();
+                }
+                return BadRequest("Book was not added");
+
+            } catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         //Read all books

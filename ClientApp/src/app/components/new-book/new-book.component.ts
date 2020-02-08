@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
 export class NewBookComponent implements OnInit {
   // create a formGroup to use in the form
   addBookForm: FormGroup;
+  // create an error variable to be used if data is not entered by user
+  showError: boolean = false;
 
   // inject the service
   constructor(
@@ -36,8 +38,13 @@ export class NewBookComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.addBook(this.addBookForm.value).subscribe(data => {
-      this.router.navigate(["/books"]);
-    });
+    this.service.addBook(this.addBookForm.value).subscribe(
+      data => {
+        this.router.navigate(["/books"]);
+      },
+      error => {
+        this.showError = true;
+      }
+    );
   }
 }
