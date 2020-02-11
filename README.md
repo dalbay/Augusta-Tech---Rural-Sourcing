@@ -17,3 +17,14 @@
 7.	Make a Web API Request
 8.	Use CORS to fix the Web API Request error
 9.	Use HttpClient instead of HttpModule
+
+	After creating the database open SQL Server Object Explorer; You can modify the data by - right click the table and View Data.
+
+
+	From that table generate a model and dbContext - we can do this by using the build in console: Tools - NuGet Manager - Package Manager Console.
+
+
+scaffold -""(connection string)- Micros...(sql server driver),- we want the result in a Models folder which we don't have  yet
+
+```PM> scaffold-dbcontext "Data Source=DESKTOP-AYGUN;Initial Catalog=RuralSourcing_HRdb;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models```  
+
