@@ -1,0 +1,91 @@
+﻿
+
+
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+    .form-inline label {
+        margin: 5px 10px 5px 0px;
+        font-size: 14px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .form-inline option {
+        vertical-align: middle;
+        margin: 5px 10px 5px 0;
+        padding: 10px;
+        width: 15%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .form-inline button {
+        padding: 10px 20px;
+        background-color: #E30229;
+        border: none;
+        float: right;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+    }
+
+        .form-inline button:hover {
+            background-color: #FC4F6D;
+        }
+
+.selectBox {
+    position: relative;
+}
+
+    .selectBox select {
+        width: 100%;
+        font-weight: bold;
+    }
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+    #checkboxes label {
+        display: block;
+    }
+
+        #checkboxes label:hover {
+            background-color: #1e90ff;
+        }
+
+
+
+
+
+/************************************************/
+/*@media (max-width: 800px) {
+    .form-inline input, select {
+        margin: 10px 0;
+    }
+
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media screen and (max-height: 450px) {
+}
+
+ }*/
