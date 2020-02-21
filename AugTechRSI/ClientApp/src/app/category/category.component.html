@@ -1,0 +1,46 @@
+﻿
+
+<h1>List of Skill-Categories</h1>
+
+<p>This component fetches data from the server.</p>
+
+<p *ngIf="!categories"><em>Loading...</em></p>
+
+<!------------Add New Category------------------------->
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-4">Add New Category...</h3>
+        <form class="form-horizontal">
+            <div class="form-group ">
+                <label class="addCategory" for="categoryName">Category Name :</label>
+                <input type="text" class="form-control" id="categoryName" placeholder="Type in New Category" name="categoryName">
+            </div>
+            <div class="form-group form-skillCategory">
+                <label class="addCategory" for="categoryDescription">Description :</label>
+                <textarea id="categoryDescription" class="form-control" name="categoryDescription" style="width:100%;"></textarea>
+
+            </div>                <div class="input-group-append">
+                <button type="button" class="btn btn-primary">Add Category</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!------------------------------------->
+
+<table class='table' *ngIf="categories">
+    <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categories">
+            <td>{{ category.typeId }}</td>
+            <td>{{ category.typeName }}</td>
+            <td>{{ category.typeDescription }}</td>
+        </tr>
+    </tbody>
+</table>

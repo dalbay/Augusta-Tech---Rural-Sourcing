@@ -1,0 +1,35 @@
+<div class='main-nav'>
+  <nav class='navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-column'>
+      <div class="navbar-header p-0">
+          <a class='navbar-brand' [routerLink]='["/"]'>Home</a>
+          <button type='button' class='navbar-toggler' data-toggle='collapse' data-target='#navbarNav' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+              <span class='sr-only'>Toggle navigation</span>
+              <span class='navbar-toggler-icon'></span>
+          </button>
+          <div id="navbarNav" class='navbar-collapse collapse p-0' [ngClass]='{ "in": isExpanded }'>
+              <ul class='nav navbar-nav flex-column'>
+                  <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                      <a [routerLink]='["/"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-home'></span> Home
+                      </a>
+                  </li>
+                  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+                      <a [routerLink]='["/skills"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-database'></span> List Skills
+                      </a>
+                  </li>
+                  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+                      <a [routerLink]='["/category"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-database'></span> List Categories
+                      </a>
+                  </li>
+                  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+                      <a [routerLink]='["/user"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-users'></span> Employees
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+</div>
