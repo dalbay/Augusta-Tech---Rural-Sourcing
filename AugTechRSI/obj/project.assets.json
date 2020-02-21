@@ -12946,11 +12946,11 @@
   "project": {
     "version": "2.0.1",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aygun\\source\\repos\\AugTechRSI\\AugTechRSI\\AugTechRSI.csproj",
+      "projectUniqueName": "C:\\Users\\aygun\\OneDrive\\Documents\\GitHub\\Augusta-Tech---Rural-Sourcing\\AugTechRSI\\AugTechRSI.csproj",
       "projectName": "ASP.NET Core 2.2 with Angular 7 Template",
-      "projectPath": "C:\\Users\\aygun\\source\\repos\\AugTechRSI\\AugTechRSI\\AugTechRSI.csproj",
+      "projectPath": "C:\\Users\\aygun\\OneDrive\\Documents\\GitHub\\Augusta-Tech---Rural-Sourcing\\AugTechRSI\\AugTechRSI.csproj",
       "packagesPath": "C:\\Users\\aygun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aygun\\source\\repos\\AugTechRSI\\AugTechRSI\\obj\\",
+      "outputPath": "C:\\Users\\aygun\\OneDrive\\Documents\\GitHub\\Augusta-Tech---Rural-Sourcing\\AugTechRSI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app.routing.ts" />
+    <None Remove="ClientApp\src\app\employee\employee.component.ts" />
     <None Remove="ClientApp\src\app\layout\admin-layout\admin-layout.component.ts" />
     <None Remove="ClientApp\src\app\layout\plain-layout\plain-layout.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
@@ -45,6 +46,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\employee\employee.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\layout\admin-layout\admin-layout.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\layout\plain-layout\plain-layout.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
