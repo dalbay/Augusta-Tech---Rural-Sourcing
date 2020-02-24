@@ -1,1 +1,85 @@
-﻿<h1>Employees</h1>
+﻿
+<!--<p *ngIf="!skills"><em>Loading...</em></p>-->
+<!------------Add Skill Form------------------------->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-4">Add New Employee</h3>
+        <!--Begin Row-->
+        <div class="row">
+            <!--Begin Column 1-->
+            <div class="col-sm">
+                <form>
+                    <div class="row">
+                        <div class="form-group ">
+                            <label for="firstName">First Name :</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Type in First Name" name="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name :</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Type in Last Name" name="lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectPosition">Level :</label>
+                        <select class="custom-select" id="selectPosition">
+                            <option selected>Select a Level...</option>
+                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectPosition">Supervisor :</label>
+                        <select class="custom-select" id="selectSupervisor">
+                            <option selected>Select a Supervisor...</option>
+                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectDepartment">Department :</label>
+                        <select class="custom-select" id="selectDepartment">
+                            <option selected>Select a Department...</option>
+                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectLocation">Location :</label>
+                        <select class="custom-select" id="selectLocation">
+                            <option selected>Select a Location...</option>
+                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectSOW">SOW :</label>
+                        <select class="custom-select" id="selectSOW">
+                            <option selected>Select a SOW...</option>
+                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                        </select>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary">Add Employee</button>
+                    </div>
+                </form>
+                <!--End Column 1-->
+            </div>
+            <!--Begni Column 2-->
+            <div class="col-sm">
+                <table class='table'>
+                    <!--*ngIf="categories"-->
+                    <thead>
+                        <tr>
+                            <th>Skill Name</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr *ngFor="let category of categories">
+                        <td>{{ skill.skillName }}</td>
+                        <td>{{ category.typeName }}</td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+            <!--End Row-->
+        </div>
+    </div>
+</div>
+<!------------------------------------->

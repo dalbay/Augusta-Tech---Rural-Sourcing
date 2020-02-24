@@ -22,9 +22,7 @@ export class SkillComponent implements OnInit {
         http.get(baseUrl + 'api/Skills').subscribe(result => {
             this.skills = result as AllSkill[];
             this.source = new LocalDataSource(this.skills);
-            //this.categories.push(result[0] as AllSkill);
-            //Get a distinct category names
-            //this.categories.push()
+
             console.log(this.skills);
             for (var i = 0; i < this.skills.length; i++) {
                 this.categories.push(this.skills[i].typeName);

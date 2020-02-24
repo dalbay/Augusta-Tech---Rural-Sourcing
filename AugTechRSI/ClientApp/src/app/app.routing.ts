@@ -11,6 +11,7 @@ import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 const appRoutes: Routes = [
     //Admin Routes:
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'skills', component: SkillComponent },
             { path: 'category', component: CategoryComponent },
-            {path: 'employees', component: EmployeeComponent}
+            { path: 'employee', component: EmployeeComponent },
+            { path: 'employees', component: EmployeesComponent}
         ]
     },
     //No Layout Routes:

@@ -24,8 +24,13 @@
                       </a>
                   </li>
                   <li class="nav-item" [routerLinkActive]='["link-active"]'>
-                      <a [routerLink]='["/user"]' class="nav-link" (click)='collapse()'>
-                          <span class='fas fa-users'></span> Employees
+                      <a [routerLink]='["/employees"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-users'></span>List Employees
+                      </a>
+                  </li>
+                  <li class="nav-item" [routerLinkActive]='["link-active"]'>
+                      <a [routerLink]='["/employee"]' class="nav-link" (click)='collapse()'>
+                          <span class='fas fa-users'></span>Add New Employee
                       </a>
                   </li>
               </ul>

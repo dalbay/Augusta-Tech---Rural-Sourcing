@@ -1,0 +1,35 @@
+﻿<!--<p *ngIf="!skills"><em>Loading...</em></p>-->
+<!------------Add Skill Form------------------------->
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h4 class="display-4">Selected Employee</h4>
+        <form class="form-inline">
+            <div class="row">
+                <div class="col-sm">
+                    <h5 class="display-5">First Name:</h5>
+                </div>
+                <div class="col-sm">
+                    <label id="employeeFName">first name here</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h5  class="display-5">Last Name:</h5>
+                </div>
+                <div class="col-sm">
+                    <label for="employeeSkills">last name here</label>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="container" style="margin-top:10px;">
+        <h5 class="display-6">Emplyee's Skills :</h5>
+        <span>skills displayed here....</span>
+    </div>
+</div>
+    <!------------------------------------->
+    <div>
+        <ng2-smart-table [settings]="settings" [source]="source" class="table"></ng2-smart-table>
+    </div>

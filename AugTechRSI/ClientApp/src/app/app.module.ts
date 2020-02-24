@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
 import { UserComponent } from './user/user.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 import { routing } from './app.routing';
 
@@ -34,7 +35,8 @@ import { from } from 'rxjs';
         CategoryComponent,
         HomeComponent,
         UserComponent,
-        EmployeeComponent
+        EmployeeComponent,
+        EmployeesComponent
         //FetchDataComponent,
         //CounterComponent
   ],
