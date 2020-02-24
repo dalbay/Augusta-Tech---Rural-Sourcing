@@ -13,6 +13,7 @@ import { SkillComponent } from './skill/skill.component';
 import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
 import { UserComponent } from './user/user.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 import { routing } from './app.routing';
 
@@ -32,7 +33,8 @@ import { from } from 'rxjs';
         LoginComponent,
         CategoryComponent,
         HomeComponent,
-        UserComponent
+        UserComponent,
+        EmployeeComponent
         //FetchDataComponent,
         //CounterComponent
   ],

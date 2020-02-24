@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 const appRoutes: Routes = [
     //Admin Routes:
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'skills', component: SkillComponent },
-            { path: 'category', component: CategoryComponent}
+            { path: 'category', component: CategoryComponent },
+            {path: 'employees', component: EmployeeComponent}
         ]
     },
     //No Layout Routes:

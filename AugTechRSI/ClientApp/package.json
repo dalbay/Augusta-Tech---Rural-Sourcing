@@ -24,6 +24,7 @@
     "@angular/platform-server": "^7.2.13",
     "@angular/router": "^7.2.13",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.1",
+    "@types/angular": "^1.6.57",
     "ajv": "^6.10.0",
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.3.1",
