@@ -9,6 +9,7 @@
             <!--Begin Column 1-->
             <div class="col-sm">
                 <form>
+                    <!--Employee Name-->
                     <div class="row">
                         <div class="form-group ">
                             <label for="firstName">First Name :</label>
@@ -19,13 +20,21 @@
                             <input type="text" class="form-control" id="lastName" placeholder="Type in Last Name" name="lastName">
                         </div>
                     </div>
+                    <!--Level-->
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
                         <select class="custom-select" id="selectPosition">
                             <option selected>Select a Level...</option>
-                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                            <option value="1">Junior Associate</option>
+                            <option value="2">Associate</option>
+                            <option value="3">Analyst I</option>
+                            <option value="4">Analyst II</option>
+                            <option value="5">Senior I</option>
+                            <option value="6">Senior II</option>
+                            <option value="7">Principal</option>
                         </select>
                     </div>
+                    <!--Supervisor-->
                     <div class="form-group">
                         <label for="selectPosition">Supervisor :</label>
                         <select class="custom-select" id="selectSupervisor">
@@ -33,6 +42,7 @@
                             <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
                         </select>
                     </div>
+                    <!--Department-->
                     <div class="form-group">
                         <label for="selectDepartment">Department :</label>
                         <select class="custom-select" id="selectDepartment">
@@ -40,6 +50,7 @@
                             <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
                         </select>
                     </div>
+                    <!--Location-->
                     <div class="form-group">
                         <label for="selectLocation">Location :</label>
                         <select class="custom-select" id="selectLocation">
@@ -47,6 +58,7 @@
                             <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
                         </select>
                     </div>
+                    <!--SOW-->
                     <div class="form-group">
                         <label for="selectSOW">SOW :</label>
                         <select class="custom-select" id="selectSOW">

@@ -11,22 +11,15 @@ import { HttpClient } from "@angular/common/http";
 
 export class EmployeesComponent {
 
-    //add a property to the component to use ng2-smart-table
+    //add properties to the component to use ng2-smart-table
     source: LocalDataSource;
     public employees: AllEmployees[] = [];
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/Employees').subscribe(result => {
+
             this.employees = result as AllEmployees[];
             this.source = new LocalDataSource(this.employees);
-
-            console.log(this.employees);
-            //console.log(this.skills);
-            //for (var i = 0; i < this.skills.length; i++) {
-            //    this.categories.push(this.skills[i].typeName);
-            //}
-            //console.log(this.categories);
-            //this.distCategories = this.categories.filter((n, i) => this.categories.indexOf(n) === i);
 
         }, error => console.error(error));
     };
