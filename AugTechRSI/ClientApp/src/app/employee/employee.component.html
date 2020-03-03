@@ -1,5 +1,5 @@
 ﻿
-<!--<p *ngIf="!skills"><em>Loading...</em></p>-->
+<p *ngIf="!employeeInfos"><em>Loading...</em></p>
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -39,7 +39,7 @@
                         <label for="selectPosition">Supervisor :</label>
                         <select class="custom-select" id="selectSupervisor">
                             <option selected>Select a Supervisor...</option>
-                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                            <option *ngFor="let supervisor of supervisors">{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}</option>
                         </select>
                     </div>
                     <!--Department-->
@@ -47,7 +47,7 @@
                         <label for="selectDepartment">Department :</label>
                         <select class="custom-select" id="selectDepartment">
                             <option selected>Select a Department...</option>
-                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                            <option *ngFor="let department of departments" value="{{ department.departmentId }}">{{ department.departmentName }}</option>
                         </select>
                     </div>
                     <!--Location-->
@@ -55,7 +55,7 @@
                         <label for="selectLocation">Location :</label>
                         <select class="custom-select" id="selectLocation">
                             <option selected>Select a Location...</option>
-                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                            <option *ngFor="let location of locations" value="{{ location.locationId }}">{{ location.locationName }}</option>
                         </select>
                     </div>
                     <!--SOW-->
@@ -63,7 +63,7 @@
                         <label for="selectSOW">SOW :</label>
                         <select class="custom-select" id="selectSOW">
                             <option selected>Select a SOW...</option>
-                            <!--<option *ngFor="let category of distCategories" value="1">{{ category }}</option>-->
+                            <option *ngFor="let sow of sows" value="{{ sow.sowId }}">{{ sow.clientName }}</option>
                         </select>
                     </div>
                     <div class="input-group-append">
@@ -74,21 +74,9 @@
             </div>
             <!--Begni Column 2-->
             <div class="col-sm">
-                <table class='table'>
-                    <!--*ngIf="categories"-->
-                    <thead>
-                        <tr>
-                            <th>Skill Name</th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!--<tr *ngFor="let category of categories">
-                        <td>{{ skill.skillName }}</td>
-                        <td>{{ category.typeName }}</td>
-                    </tr>-->
-                    </tbody>
-                </table>
+
+                    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
+
             </div>
             <!--End Row-->
         </div>

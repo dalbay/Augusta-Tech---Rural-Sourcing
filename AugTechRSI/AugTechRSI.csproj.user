@@ -12,5 +12,6 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <ToolsVersionPromptShown>3.2</ToolsVersionPromptShown>
     <ShowAllFiles>true</ShowAllFiles>
+    <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
   </PropertyGroup>
 </Project>

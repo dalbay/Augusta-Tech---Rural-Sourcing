@@ -6,71 +6,80 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AugTechRSI.Models;
+using AugTech_RSI.Models;
 using System.Data.SqlClient;
 
 namespace AugTechRSI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeeInfoController : ControllerBase
     {
-        private readonly RuralSourcing_HRdbContext _context;
-
         //variables to store stored procedure data
         private static string connection;
-        List<SPGetAllEmployees> spGetAllEmployees = new List<SPGetAllEmployees>();
+        List<EmployeeInfo> employeeInfos = new List<EmployeeInfo>();
+        List<SkillCategory> skillCategories = new List<SkillCategory>();
 
 
-        public EmployeesController(RuralSourcing_HRdbContext context)
+        private readonly RuralSourcing_HRdbContext _context;
+
+        public EmployeeInfoController(RuralSourcing_HRdbContext context)
         {
             _context = context;
 
             //get the connection string
             connection = context.Database.GetDbConnection().ConnectionString;
         }
+        // GET: api/EmployeeInfo
+        [HttpGet]
+        public IEnumerable<EmployeeInfo> GetEmployeeInfos()
+        {
+            try
+            {
+                var supervisors = _context.Supervisor.ToList();
+                var departments = _context.Department.ToList();
+                var locations = _context.Location.ToList();
+                var sows = _context.Sow.ToList();
+                var skills = getSkillCategory();
+                EmployeeInfo employeeInfo = new EmployeeInfo();
+                employeeInfo.Supervisors = supervisors;
+                employeeInfo.Departments = departments;
+                employeeInfo.Locations = locations;
+                employeeInfo.Sows = sows;
+                employeeInfo.Skills = skills;
+                employeeInfos.Add(employeeInfo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return employeeInfos;
+        }
 
         //Retrieve data with stored procedure
-        public List<SPGetAllEmployees> getAllEmployees()
+        public List<SkillCategory> getSkillCategory()
         {
-            using(SqlConnection sqlConnection = new SqlConnection(connection))
+            using (SqlConnection sqlConnection = new SqlConnection(connection))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllEmployees", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllSkills", sqlConnection))
                 {
                     sqlConnection.Open();
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     SqlDataReader rd = sqlCommand.ExecuteReader();
-                    while(rd.Read())
+                    while (rd.Read())
                     {
-                        SPGetAllEmployees employee = new SPGetAllEmployees();
-                        employee.UserID = (int)rd["UserID"];
-                        employee.EmployeeName = rd["EmployeeName"].ToString();
-                        employee.Position = rd["Position"].ToString();
-                        employee.ManagerName = rd["ManagerName"].ToString();
-                        employee.DepartmentName = rd["DepartmentName"].ToString();
-                        employee.LocationName = rd["LocationName"].ToString();
-                        employee.SOW = rd["SOW"].ToString();
-
-                        spGetAllEmployees.Add(employee);
+                        SkillCategory skill = new SkillCategory();
+                        skill.SkillId = (int)rd["SkillID"];
+                        skill.SkillName = rd["SkillTitle"].ToString();
+                        skill.CategoryName = rd["TypeName"].ToString();
+                        skillCategories.Add(skill);
                     }
                 }
-                return spGetAllEmployees;
+                return skillCategories;
             }
         }
 
-        // GET: api/Employees
-        [HttpGet]
-        public IEnumerable<SPGetAllEmployees> GetAllEmployees()
-        {
-            return getAllEmployees();
-        }
-
-
-        //public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
-        //{
-        //    return await _context.Employee.ToListAsync();
-        //}
-
-        // GET: api/Employees/5
+        // GET: api/EmployeeInfo/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
@@ -84,7 +93,7 @@ namespace AugTechRSI.Controllers
             return employee;
         }
 
-        // PUT: api/Employees/5
+        // PUT: api/EmployeeInfo/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(int id, Employee employee)
         {
@@ -114,7 +123,7 @@ namespace AugTechRSI.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
+        // POST: api/EmployeeInfo
         [HttpPost]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
@@ -124,7 +133,7 @@ namespace AugTechRSI.Controllers
             return CreatedAtAction("GetEmployee", new { id = employee.UserId }, employee);
         }
 
-        // DELETE: api/Employees/5
+        // DELETE: api/EmployeeInfo/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {

@@ -22,12 +22,12 @@ C:\Users\aygun\source\repos\AugTechRSI\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NE
 C:\Users\aygun\source\repos\AugTechRSI\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
 C:\Users\aygun\source\repos\AugTechRSI\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CopyComplete
 C:\Users\aygun\source\repos\AugTechRSI\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csprojAssemblyReference.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.dll
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.deps.json
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.runtimeconfig.json
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.runtimeconfig.dev.json
-C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
-C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.dll
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.pdb
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CoreCompileInputs.cache
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorAssemblyInfo.cache
@@ -45,4 +45,3 @@ C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRS
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
 C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CopyComplete
-C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csprojAssemblyReference.cache

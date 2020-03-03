@@ -20,7 +20,7 @@ export class EmployeesComponent {
 
             this.employees = result as AllEmployees[];
             this.source = new LocalDataSource(this.employees);
-
+            console.log(this.source);
         }, error => console.error(error));
     };
 

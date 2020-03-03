@@ -9,11 +9,8 @@ namespace AugTech_RSI.Models
     public class SkillCategory
     {
         public int SkillId { get; set; }
-        public string SkillTitle { get; set; }
-        public string SkillDescription { get; set; }
-        public int TypeId { get; set; }
-
-        public SkillType Type { get; set; }
+        public string SkillName { get; set; }
+        public string   CategoryName { get; set; }
 
     }
 }
