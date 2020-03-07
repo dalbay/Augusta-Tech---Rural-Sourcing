@@ -38,7 +38,6 @@ export class EmployeeComponent {
     settings = {
         selectMode: 'multi',
         columns: {
-            skillId: { title: 'Skill ID', filter: false, editable:false },
             skillName: { title: 'Skill Name', editable: false },
             categoryName: { title: 'Category', editable: false },
         },
@@ -46,9 +45,9 @@ export class EmployeeComponent {
 
     };
     // UserRowSelected Event handler
-    onRowSelect(event) {
-        this.selectedRows = event.selected;
-    }
+    //onRowSelect(event) {
+    //    this.selectedRows = event.selected;
+    //}
 
 }
 interface Skill {

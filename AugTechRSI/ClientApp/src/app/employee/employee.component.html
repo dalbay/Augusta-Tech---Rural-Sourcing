@@ -74,11 +74,75 @@
             </div>
             <!--Begni Column 2-->
             <div class="col-sm">
-
                     <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
-
             </div>
             <!--End Row-->
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <h5 class="display-5">Employee Info:</h5>
+                <form class="form-inline">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="display-5">First Name:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label id="employeeFName">Jhon</label>
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="display-5">Last Name:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label for="employeeSkills">Doe</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="display-5">Level:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label id="level">Associate</label>
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="display-5">Supervisor:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label for="supervisor">Allan Wingman</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="display-5">Department:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label id="department">.NET Developer</label>
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="display-5">Location:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label for="location">Augusta</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="display-5">SOW:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <label id="sow">Murphy LTd</label>
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="display-5">Add New Employee:</h5>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary">Add Employee</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm"></div>
         </div>
     </div>
 </div>
