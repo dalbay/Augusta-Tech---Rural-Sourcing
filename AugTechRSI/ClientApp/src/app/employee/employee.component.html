@@ -2,28 +2,29 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h3 class="display-4">Add New Employee</h3>
-        <!--Begin Row-->
-        <div class="row">
-            <!--Begin Column 1-->
-            <div class="col-sm">
-                <form #employeeForm="ngForm">
+        <form #employeeForm="ngForm">
+
+            <h3 class="display-4">Add New Employee</h3>
+            <!--Begin 1.Row-->
+            <div class="row">
+                <!--Begin Column 1-->
+                <div class="col-sm">
+
                     <!--Employee Name-->
                     <div class="row">
                         <div class="form-group ">
-                            <label for="firstName">First Name :</label>
-                            <input type="text" class="form-control" id="inputFirstName" placeholder="Type in First Name" name="firstName" [(ngModel)]="firstName" (focusout)="getInput(employeeForm)">
+                            <label for="inputFirstName">First Name :</label>
+                            <input type="text" name="fname" [(ngModel)]="fname" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name :</label>
-                            <input type="text" class="form-control" id="inputLastName" placeholder="Type in Last Name" name="lastName" [(ngModel)]="lastName" (focusout)="getInput()">
+                            <label for="inputLastName">Last Name :</label>
+                            <input type="text" name="lname" [(ngModel)]="lname" class="form-control" id="inputLastName" placeholder="Type in Last Name" (focusout)="getName()">
                         </div>
                     </div>
                     <!--Level-->
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
-                        <select class="custom-select" id="selectPosition" [(ngModel)]="position">
-                            <option selected>Select a Level...</option>
+                        <select name="position" [(ngModel)]="position" class="custom-select" id="selectPosition" (change)="getPosition()">
                             <option value="1">Junior Associate</option>
                             <option value="2">Associate</option>
                             <option value="3">Analyst I</option>
@@ -35,103 +36,99 @@
                     </div>
                     <!--Supervisor-->
                     <div class="form-group">
-                        <label for="selectPosition">Supervisor :</label>
-                        <select class="custom-select" id="selectSupervisor">
-                            <option selected>Select a Supervisor...</option>
-                            <option *ngFor="let supervisor of supervisors">{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}</option>
+                        <label for="selectSupervisor">Supervisor :</label>
+                        <select name="supervisor" [(ngModel)]="supervisor" class="custom-select" id="selectSupervisor" (change)="getSupervisor()">
+                            <option *ngFor="let supervisor of supervisors" value="{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}">{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}</option>
                         </select>
                     </div>
+
                     <!--Department-->
                     <div class="form-group">
                         <label for="selectDepartment">Department :</label>
-                        <select class="custom-select" id="selectDepartment">
-                            <option selected>Select a Department...</option>
+                        <select name="department" [(ngModel)]="department" class="custom-select" id="selectDepartment" (change)="getDepartment()">
                             <option *ngFor="let department of departments" value="{{ department.departmentId }}">{{ department.departmentName }}</option>
                         </select>
                     </div>
                     <!--Location-->
                     <div class="form-group">
                         <label for="selectLocation">Location :</label>
-                        <select class="custom-select" id="selectLocation">
-                            <option selected>Select a Location...</option>
+                        <select name="location" [(ngModel)]="location" class="custom-select" id="selectLocation" (change)="getLocation()">
                             <option *ngFor="let location of locations" value="{{ location.locationId }}">{{ location.locationName }}</option>
                         </select>
                     </div>
                     <!--SOW-->
                     <div class="form-group">
                         <label for="selectSOW">SOW :</label>
-                        <select class="custom-select" id="selectSOW">
-                            <option selected>Select a SOW...</option>
+                        <select name="sow" [(ngModel)]="sow" class="custom-select" id="selectSOW" (change)="getSOW()">
                             <option *ngFor="let sow of sows" value="{{ sow.sowId }}">{{ sow.clientName }}</option>
                         </select>
                     </div>
-                </form>
-                <!--End Column 1-->
+                    <!--End Column 1-->
+                </div>
+                <!--Begni Column 2-->
+                <div class="col-sm">
+                    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
+                </div>
+
             </div>
-            <!--Begni Column 2-->
-            <div class="col-sm">
-                <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
-            </div>
-            <!--End Row-->
-        </div>
-        <form #listEmployeeForm="ngForm">
+            <!--End 1.Row-->
+            <!--Begin 2.Row-->
             <div class="row">
                 <div class="col-sm">
-                    <h5 class="display-5">Employee Info:</h5>
                     <div class="row">
-                        <div class="form-group col-sm-6">
+                        <div class="col-sm-6">
                             <h5 class="display-5">First Name:</h5>
-                            <input type="text" disabled class="form-control" id="lblFirstName" name="fName" [(ngModel)]="fName">
+                            <label id="lblFirstName">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Last Name:</h5>
-                            <label id="lblLastName">Doe</label>
+                            <label id="lblLastName">-</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">Level:</h5>
-                            <label id="level">Associate</label>
+                            <label id="lblposition">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Supervisor:</h5>
-                            <label for="supervisor">Allan Wingman</label>
+                            <label id="lblsupervisor">-</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">Department:</h5>
-                            <label id="department">.NET Developer</label>
+                            <label id="lbldepartment">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Location:</h5>
-                            <label for="location">Augusta</label>
+                            <label id="lbllocation">-</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5 class="display-5">Selected Skills:</h5>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">SOW:</h5>
-                            <label id="sow">Murphy LTd</label>
+                            <label id="lblsow">-</label>
                         </div>
-                        <div class="col-sm-6">
-
+                        <div  class="col-sm-6">
+                            <button style="float:right" type="submit"class="btn btn-primary">Add Employee</button>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <h5 class="display-5">Selected Skills:</h5>
-                    <div class="row">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <br />
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Add Employee</button>
                     </div>
                 </div>
             </div>
+            <!--End 2.Row-->
         </form>
     </div>
 </div>
 <!------------------------------------->
 {{employeeForm.value | json}}
-{{listEmployeeForm.value | json}}
+
+

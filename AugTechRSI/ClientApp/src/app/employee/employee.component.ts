@@ -2,7 +2,7 @@
 import { LocalDataSource } from 'ng2-smart-table';
 import { from } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
     selector: 'app-employee',
@@ -31,7 +31,6 @@ export class EmployeeComponent {
             this.departments = this.employeeInfos[0].departments;
             this.locations = this.employeeInfos[0].locations;
             this.sows = this.employeeInfos[0].sows;
-            console.log(this.employeeInfos[0]);
             //fill source for table
             this.source = new LocalDataSource(this.employeeInfos[0].skills)
         }, error => console.error(error));
@@ -52,20 +51,39 @@ export class EmployeeComponent {
         this.selectedRows = event.selected;
     }
 
-    public listEmployeeForm: NgForm;
-    getInput(employeeForm: NgForm) {
+
+    getName() {
         var fname = (document.getElementById('inputFirstName') as HTMLInputElement).value;
         var lname = (document.getElementById('inputLastName') as HTMLInputElement).value;
-        //console.log(lname);
-        (document.getElementById('lblFirstName') as HTMLInputElement).value = fname;
-        document.getElementById('lblLastName').innerText = lname;
-
-        console.log(employeeForm);
-
+        (document.getElementById('lblFirstName') as HTMLElement).innerText = fname;
+        (document.getElementById('lblLastName') as HTMLElement).innerText = lname;
     }
-    getPosition(empForm: NgForm): void {
-        console.log(empForm);
+    getPosition() {
+        var positionSelect = (document.getElementById('selectPosition') as HTMLSelectElement);
+        console.log(positionSelect.options[positionSelect.selectedIndex].text);
+        (document.getElementById('lblposition') as HTMLElement).innerText = positionSelect.options[positionSelect.selectedIndex].text;
     }
+    getSupervisor() {
+        var supervisorSelect = (document.getElementById('selectSupervisor') as HTMLSelectElement);
+        (document.getElementById('lblsupervisor') as HTMLElement).innerText = supervisorSelect.options[supervisorSelect.selectedIndex].text;
+    }
+    getDepartment() {
+        var departmentSelect = (document.getElementById('selectDepartment') as HTMLSelectElement);
+        (document.getElementById('lbldepartment') as HTMLElement).innerText = departmentSelect.options[departmentSelect.selectedIndex].text;
+    }
+    getLocation() {
+        var locationSelect = (document.getElementById('selectLocation') as HTMLSelectElement);
+        (document.getElementById('lbllocation') as HTMLElement).innerText = locationSelect.options[locationSelect.selectedIndex].text;
+    }
+    getSOW() {
+        var sowSelect = (document.getElementById('selectSOW') as HTMLSelectElement);
+        (document.getElementById('lblsow') as HTMLElement).innerText = sowSelect.options[sowSelect.selectedIndex].text;
+    }
+
+    saveEmployee(saveEmployeeForm: NgForm) {
+        console.log(saveEmployeeForm.value);
+    }
+
 
 }
 interface Skill {
