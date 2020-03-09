@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { from } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { NgForm, NgModel } from '@angular/forms';
+import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-employee',
@@ -14,7 +15,7 @@ export class EmployeeComponent {
     //add a source property for the table
     source: LocalDataSource;
     // ad a property to store selected check-boxes
-    selectedRows: any;
+    selectedRows: any = [];
 
     //Properties to hold the data for the dropdowns
     public employeeInfos: EmployeeInfo[];
@@ -23,6 +24,14 @@ export class EmployeeComponent {
     public locations: Location[];
     public sows: SOW[];
     public skills: Skill[];
+
+    //Properties to hold data for Employee
+    public FirstName: string;
+    public LastName: string;
+    public Position: string;
+    public DepartmentId: number;
+    public LocationId: number;
+
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/EmployeeInfo').subscribe(result => {
@@ -36,6 +45,11 @@ export class EmployeeComponent {
         }, error => console.error(error));
     };
 
+
+    saveEmployee(saveEmployeeForm: NgForm) {
+        console.log(saveEmployeeForm.value);
+    }
+
     //Setting for the table:
     settings = {
         selectMode: 'multi',
@@ -46,11 +60,6 @@ export class EmployeeComponent {
         actions: { add: false, delete: false, edit: false }
 
     };
-    // UserRowSelected Event handler
-    onRowSelect(event) {
-        this.selectedRows = event.selected;
-    }
-
 
     getName() {
         var fname = (document.getElementById('inputFirstName') as HTMLInputElement).value;
@@ -79,11 +88,22 @@ export class EmployeeComponent {
         var sowSelect = (document.getElementById('selectSOW') as HTMLSelectElement);
         (document.getElementById('lblsow') as HTMLElement).innerText = sowSelect.options[sowSelect.selectedIndex].text;
     }
+public static skillsList = [];
+    // UserRowSelected Event handler
+    onRowSelect(event) {
+        var selectedSkillsTextArea = (document.getElementById('skillsTextArea') as HTMLTextAreaElement);
 
-    saveEmployee(saveEmployeeForm: NgForm) {
-        console.log(saveEmployeeForm.value);
+        this.selectedRows = event.selected;
+        if (event.isSelected) {
+            EmployeeComponent.skillsList.push('SKILL: ' + event.data.skillName + '  '+'\n' );
+        }
+        else {
+            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf('SKILL: ' + event.data.skillName + '  ' + '\n'),1);
+        }
+        console.log(EmployeeComponent.skillsList);
+
+        selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
     }
-
 
 }
 interface Skill {
@@ -114,5 +134,13 @@ interface EmployeeInfo {
     sows: [];
     skills: [];
 }
+
+//interface Employee {
+//            public string FirstName { get; set; }
+//        public string LastName { get; set; }
+//        public string Position { get; set; }
+//        public int DepartmentId { get; set; }
+//        public int LocationId { get; set; }
+//}
 
 

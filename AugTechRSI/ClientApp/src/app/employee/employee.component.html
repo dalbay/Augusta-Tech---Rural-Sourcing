@@ -67,7 +67,7 @@
                 </div>
                 <!--Begni Column 2-->
                 <div class="col-sm">
-                    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
+                    <ng2-smart-table [settings]="settings" [source]="source" (rowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
                 </div>
 
             </div>
@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5 class="display-5">Selected Skills:</h5>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea readonly class="form-control" id="skillsTextArea" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
