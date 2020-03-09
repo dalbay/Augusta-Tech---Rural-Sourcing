@@ -2,6 +2,7 @@
 import { LocalDataSource } from 'ng2-smart-table';
 import { from } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-employee',
@@ -12,6 +13,8 @@ import { HttpClient } from "@angular/common/http";
 export class EmployeeComponent {
     //add a source property for the table
     source: LocalDataSource;
+    // ad a property to store selected check-boxes
+    selectedRows: any;
 
     //Properties to hold the data for the dropdowns
     public employeeInfos: EmployeeInfo[];
@@ -45,9 +48,24 @@ export class EmployeeComponent {
 
     };
     // UserRowSelected Event handler
-    //onRowSelect(event) {
-    //    this.selectedRows = event.selected;
-    //}
+    onRowSelect(event) {
+        this.selectedRows = event.selected;
+    }
+
+    public listEmployeeForm: NgForm;
+    getInput(employeeForm: NgForm) {
+        var fname = (document.getElementById('inputFirstName') as HTMLInputElement).value;
+        var lname = (document.getElementById('inputLastName') as HTMLInputElement).value;
+        //console.log(lname);
+        (document.getElementById('lblFirstName') as HTMLInputElement).value = fname;
+        document.getElementById('lblLastName').innerText = lname;
+
+        console.log(employeeForm);
+
+    }
+    getPosition(empForm: NgForm): void {
+        console.log(empForm);
+    }
 
 }
 interface Skill {

@@ -1,5 +1,4 @@
-﻿
-<p *ngIf="!employeeInfos"><em>Loading...</em></p>
+﻿<!--<p *ngIf="!employeeInfos"><em>Loading...</em></p>-->
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -8,22 +7,22 @@
         <div class="row">
             <!--Begin Column 1-->
             <div class="col-sm">
-                <form>
+                <form #employeeForm="ngForm">
                     <!--Employee Name-->
                     <div class="row">
                         <div class="form-group ">
                             <label for="firstName">First Name :</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Type in First Name" name="firstName">
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="Type in First Name" name="firstName" [(ngModel)]="firstName" (focusout)="getInput(employeeForm)">
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last Name :</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Type in Last Name" name="lastName">
+                            <input type="text" class="form-control" id="inputLastName" placeholder="Type in Last Name" name="lastName" [(ngModel)]="lastName" (focusout)="getInput()">
                         </div>
                     </div>
                     <!--Level-->
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
-                        <select class="custom-select" id="selectPosition">
+                        <select class="custom-select" id="selectPosition" [(ngModel)]="position">
                             <option selected>Select a Level...</option>
                             <option value="1">Junior Associate</option>
                             <option value="2">Associate</option>
@@ -66,84 +65,73 @@
                             <option *ngFor="let sow of sows" value="{{ sow.sowId }}">{{ sow.clientName }}</option>
                         </select>
                     </div>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-primary">Add Employee</button>
-                    </div>
                 </form>
                 <!--End Column 1-->
             </div>
             <!--Begni Column 2-->
             <div class="col-sm">
-                    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
+                <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
             </div>
             <!--End Row-->
         </div>
-        <div class="row">
-            <div class="col-sm">
-                <h5 class="display-5">Employee Info:</h5>
-                <form class="form-inline">
+        <form #listEmployeeForm="ngForm">
+            <div class="row">
+                <div class="col-sm">
+                    <h5 class="display-5">Employee Info:</h5>
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="form-group col-sm-6">
                             <h5 class="display-5">First Name:</h5>
+                            <input type="text" disabled class="form-control" id="lblFirstName" name="fName" [(ngModel)]="fName">
                         </div>
-                        <div class="col-sm">
-                            <label id="employeeFName">Jhon</label>
-                        </div>
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">Last Name:</h5>
-                        </div>
-                        <div class="col-sm">
-                            <label for="employeeSkills">Doe</label>
+                            <label id="lblLastName">Doe</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">Level:</h5>
-                        </div>
-                        <div class="col-sm">
                             <label id="level">Associate</label>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">Supervisor:</h5>
-                        </div>
-                        <div class="col-sm">
                             <label for="supervisor">Allan Wingman</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">Department:</h5>
-                        </div>
-                        <div class="col-sm">
                             <label id="department">.NET Developer</label>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">Location:</h5>
-                        </div>
-                        <div class="col-sm">
                             <label for="location">Augusta</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm-6">
                             <h5 class="display-5">SOW:</h5>
-                        </div>
-                        <div class="col-sm">
                             <label id="sow">Murphy LTd</label>
                         </div>
-                        <div class="col-sm">
-                            <h5 class="display-5">Add New Employee:</h5>
-                        </div>
-                        <div class="col-sm">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-primary">Add Employee</button>
-                            </div>
+                        <div class="col-sm-6">
+
                         </div>
                     </div>
-                </form>
+                </div>
+                <div class="col-sm">
+                    <h5 class="display-5">Selected Skills:</h5>
+                    <div class="row">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <br />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Add Employee</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm"></div>
-        </div>
+        </form>
     </div>
 </div>
 <!------------------------------------->
+{{employeeForm.value | json}}
+{{listEmployeeForm.value | json}}
