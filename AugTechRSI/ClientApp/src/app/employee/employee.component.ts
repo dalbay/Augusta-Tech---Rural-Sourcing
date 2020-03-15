@@ -26,6 +26,7 @@ export class EmployeeComponent {
     public skills: Skill[];
 
     //Properties to hold data for Employee
+    //work on the employee insert to db
     public FirstName: string;
     public LastName: string;
     public Position: string;
