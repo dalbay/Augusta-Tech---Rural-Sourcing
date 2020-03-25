@@ -47,11 +47,13 @@ export class EmployeeComponent {
     };
 
 
-    saveEmployee(saveEmployeeForm: NgForm) {
-        console.log(saveEmployeeForm.value);
+    saveEmployee(employeeForm: NgForm) {
+        console.log(employeeForm.value);
     }
 
-    //Setting for the table:
+    /* ***ng2-smart-table*** ------------------------------------*/
+
+    //Setting for ng2-smart-table:
     settings = {
         selectMode: 'multi',
         columns: {
@@ -62,6 +64,26 @@ export class EmployeeComponent {
 
     };
 
+    public static skillsList = [];
+
+    // UserRowSelected Event handler for ng2-smart-table
+    onRowSelect(event) {
+        var selectedSkillsTextArea = (document.getElementById('skillsTextArea') as HTMLTextAreaElement);
+
+        this.selectedRows = event.selected;
+        if (event.isSelected) {
+            EmployeeComponent.skillsList.push('SKILL: ' + event.data.skillName + '  ' + '\n');
+        }
+        else {
+            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf('SKILL: ' + event.data.skillName + '  ' + '\n'), 1);
+        }
+        console.log(EmployeeComponent.skillsList);
+
+        selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
+    }
+
+    /* ----------------------------------------------------*/
+    /* ***List input values to labels***------------------ */
     getName() {
         var fname = (document.getElementById('inputFirstName') as HTMLInputElement).value;
         var lname = (document.getElementById('inputLastName') as HTMLInputElement).value;
@@ -70,7 +92,7 @@ export class EmployeeComponent {
     }
     getPosition() {
         var positionSelect = (document.getElementById('selectPosition') as HTMLSelectElement);
-        console.log(positionSelect.options[positionSelect.selectedIndex].text);
+        //console.log(positionSelect.options[positionSelect.selectedIndex].text);
         (document.getElementById('lblposition') as HTMLElement).innerText = positionSelect.options[positionSelect.selectedIndex].text;
     }
     getSupervisor() {
@@ -89,22 +111,8 @@ export class EmployeeComponent {
         var sowSelect = (document.getElementById('selectSOW') as HTMLSelectElement);
         (document.getElementById('lblsow') as HTMLElement).innerText = sowSelect.options[sowSelect.selectedIndex].text;
     }
-public static skillsList = [];
-    // UserRowSelected Event handler
-    onRowSelect(event) {
-        var selectedSkillsTextArea = (document.getElementById('skillsTextArea') as HTMLTextAreaElement);
 
-        this.selectedRows = event.selected;
-        if (event.isSelected) {
-            EmployeeComponent.skillsList.push('SKILL: ' + event.data.skillName + '  '+'\n' );
-        }
-        else {
-            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf('SKILL: ' + event.data.skillName + '  ' + '\n'),1);
-        }
-        console.log(EmployeeComponent.skillsList);
-
-        selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
-    }
+/*-----------------------------------------------------------*/
 
 }
 interface Skill {
