@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { NgForm, NgModel } from '@angular/forms';
 import { forEach } from "@angular/router/src/utils/collection";
 
+
 @Component({
     selector: 'app-employee',
     templateUrl: './employee.component.html',
@@ -12,12 +13,16 @@ import { forEach } from "@angular/router/src/utils/collection";
 })
 
 export class EmployeeComponent {
-    //add a source property for the table
+
+/*----------------------PROPERTIES---------------------------------*/
+
+    //Source property for the table
     source: LocalDataSource;
-    // ad a property to store selected check-boxes
+
+    //Selected check-boxes array
     selectedRows: any = [];
 
-    //Properties to hold the data for the dropdowns
+    //Properties that hold the data for the dropdowns
     public employeeInfos: EmployeeInfo[];
     public supervisors: Supervisor[];
     public departments: Department[];
@@ -25,16 +30,25 @@ export class EmployeeComponent {
     public sows: SOW[];
     public skills: Skill[];
 
-    //Properties to hold data for Employee
-    //work on the employee insert to db
-    public FirstName: string;
-    public LastName: string;
-    public Position: string;
-    public DepartmentId: number;
-    public LocationId: number;
+    //Property array that holds the selected skills
+    public static skillsList = [];
 
+    //base url
+    appUrl: string = "";
+
+    //http
+    http: HttpClient;
+
+    //new employee
+    employee: Employee;
+
+    //New inserted employee id
+    userid: any;
+/*----------------------------------------------------------------*/
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        this.http = http;
+        this.appUrl = baseUrl;
         http.get(baseUrl + 'api/EmployeeInfo').subscribe(result => {
             this.employeeInfos = result as EmployeeInfo[];
             this.supervisors = this.employeeInfos[0].supervisors;
@@ -44,12 +58,36 @@ export class EmployeeComponent {
             //fill source for table
             this.source = new LocalDataSource(this.employeeInfos[0].skills)
         }, error => console.error(error));
+        // initialize an employee
+        this.employee = new Employee();
     };
 
+    //Insert into db api call
+    public insertEmployee(http, employee) {
+         http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
+            this.userid = data.userId as number;
+            console.log(this.userid);
+        })
+    };
 
-    saveEmployee(employeeForm: NgForm) {
-        console.log(employeeForm.value);
+    //Initialize new Employee status and call insert to db method
+    saveEmployee(emp) {
+        this.employee.FirstName = emp.fname;
+        this.employee.LastName = emp.lname;
+        this.employee.Position = emp.position;
+        this.employee.DepartmentId = emp.department;
+        this.employee.LocationId = emp.location;
+        this.employee.SowID = emp.sow;
+        this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
+        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ")+2);
+        //insert into db
+        this.insertEmployee(this.http,this.employee);
     }
+
+
+    submitted = false;
+
+    onSubmit() { this.submitted = true; }
 
     /* ***ng2-smart-table*** ------------------------------------*/
 
@@ -57,14 +95,13 @@ export class EmployeeComponent {
     settings = {
         selectMode: 'multi',
         columns: {
+            skillId: { title: 'ID', editable: false },
             skillName: { title: 'Skill Name', editable: false },
             categoryName: { title: 'Category', editable: false },
         },
         actions: { add: false, delete: false, edit: false }
-
     };
 
-    public static skillsList = [];
 
     // UserRowSelected Event handler for ng2-smart-table
     onRowSelect(event) {
@@ -72,13 +109,12 @@ export class EmployeeComponent {
 
         this.selectedRows = event.selected;
         if (event.isSelected) {
-            EmployeeComponent.skillsList.push('SKILL: ' + event.data.skillName + '  ' + '\n');
+            EmployeeComponent.skillsList.push(event.data.skillId + ' ' + event.data.skillName + '  ');
         }
         else {
-            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf('SKILL: ' + event.data.skillName + '  ' + '\n'), 1);
+            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf( event.data.skillName + '  '), 1);
         }
-        console.log(EmployeeComponent.skillsList);
-
+        //console.log(EmployeeComponent.skillsList);
         selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
     }
 
@@ -144,12 +180,26 @@ interface EmployeeInfo {
     skills: [];
 }
 
-//interface Employee {
-//            public string FirstName { get; set; }
-//        public string LastName { get; set; }
-//        public string Position { get; set; }
-//        public int DepartmentId { get; set; }
-//        public int LocationId { get; set; }
-//}
+class Employee {
+    FirstName: string;
+    LastName: string;
+    Position: string;
+    DepartmentId: number;
+    LocationId: number;
+    SowID: number;
+    SupFirstName: string;
+    SupLastName: string;
 
+    constructor() { };
+    //constructor(fn,ln,po,dep,loc,sow,supfn,supln) {
+    //    this.FirstName = fn;
+    //    this.LastName = ln;
+    //    this.Position = po;
+    //    this.DepartmentId = dep;
+    //    this.LocationId = loc;
+    //    this.SowID = sow;
+    //    this.SupFirstName = supfn;
+    //    this.SupLastName = supln;
+    //}
+}
 

@@ -2,7 +2,7 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <form #employeeForm="ngForm">
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value)" >
 
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
@@ -25,13 +25,13 @@
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
                         <select name="position" [(ngModel)]="position" class="custom-select" id="selectPosition" (change)="getPosition()">
-                            <option value="1">Junior Associate</option>
-                            <option value="2">Associate</option>
-                            <option value="3">Analyst I</option>
-                            <option value="4">Analyst II</option>
-                            <option value="5">Senior I</option>
-                            <option value="6">Senior II</option>
-                            <option value="7">Principal</option>
+                            <option value="Junior Associate">Junior Associate</option>
+                            <option value="Associate">Associate</option>
+                            <option value="Analyst I">Analyst I</option>
+                            <option value="Analyst II">Analyst II</option>
+                            <option value="Senior I">Senior I</option>
+                            <option value="Senior II">Senior II</option>
+                            <option value="Principal">Principal</option>
                         </select>
                     </div>
                     <!--Supervisor-->
@@ -119,7 +119,7 @@
                             <label id="lblsow">-</label>
                         </div>
                         <div  class="col-sm-6">
-                            <button style="float:right" type="submit"class="btn btn-primary">Add Employee</button>
+                            <button style="float:right"  type="submit" class="btn btn-primary">Add Employee</button>
                         </div>
                     </div>
                 </div>
