@@ -32,6 +32,7 @@ export class EmployeeComponent {
 
     //Property array that holds the selected skills
     public static skillsList = [];
+    public static skillsIdList = [ 0 ];
 
     //base url
     appUrl: string = "";
@@ -72,16 +73,17 @@ export class EmployeeComponent {
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
-        this.employee.FirstName = emp.fname;
-        this.employee.LastName = emp.lname;
-        this.employee.Position = emp.position;
-        this.employee.DepartmentId = emp.department;
-        this.employee.LocationId = emp.location;
-        this.employee.SowID = emp.sow;
-        this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
-        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ")+2);
+        //this.employee.FirstName = emp.fname;
+        //this.employee.LastName = emp.lname;
+        //this.employee.Position = emp.position;
+        //this.employee.DepartmentId = emp.department;
+        //this.employee.LocationId = emp.location;
+        //this.employee.SowID = emp.sow;
+        //this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
+        //this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ")+2);
         //insert into db
-        this.insertEmployee(this.http,this.employee);
+        //this.insertEmployee(this.http,this.employee);
+        console.log(EmployeeComponent.skillsList);
     }
 
 
@@ -106,15 +108,34 @@ export class EmployeeComponent {
     // UserRowSelected Event handler for ng2-smart-table
     onRowSelect(event) {
         var selectedSkillsTextArea = (document.getElementById('skillsTextArea') as HTMLTextAreaElement);
-
         this.selectedRows = event.selected;
         if (event.isSelected) {
-            EmployeeComponent.skillsList.push(event.data.skillId + ' ' + event.data.skillName + '  ');
+            var selected = 0;
+            EmployeeComponent.skillsIdList.forEach(function (value) {
+                if (value == event.data.skillId) {
+                    selected++;
+                }
+            });
+
+            if (selected == 0) {
+                console.log(event.data.skillId + ' does not exist, saved!');
+                EmployeeComponent.skillsIdList.push(event.data.skillId);
+                EmployeeComponent.skillsList.push(event.data.skillId + '-' + event.data.skillName);
+            } else {
+                console.log(event.data.skillId + ' already exists!');
+            }
         }
         else {
-            EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf( event.data.skillName + '  '), 1);
+            var name = event.data.skillId + '-' + event.data.skillName;
+            console.log(name);
+            var x = EmployeeComponent.skillsList.splice(EmployeeComponent.skillsList.indexOf(name),1);
+            console.log('deleted: ' + x);
+            var z = EmployeeComponent.skillsIdList.splice(EmployeeComponent.skillsIdList.indexOf(event.data.skillId), 1);
+            console.log('deleted: ' +z);
         }
-        //console.log(EmployeeComponent.skillsList);
+
+        console.log(EmployeeComponent.skillsIdList);
+        console.log(EmployeeComponent.skillsList);
         selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
     }
 
