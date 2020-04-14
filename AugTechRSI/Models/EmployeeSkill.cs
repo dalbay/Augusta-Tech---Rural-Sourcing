@@ -8,7 +8,7 @@ namespace AugTechRSI.Models
         public int EmpSkillId { get; set; }
         public int UserId { get; set; }
         public int SkillId { get; set; }
-        public int LevelId { get; set; }
+        public int? LevelId { get; set; }
 
         public virtual Level Level { get; set; }
         public virtual Skill Skill { get; set; }
