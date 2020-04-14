@@ -33,6 +33,7 @@ export class EmployeeComponent {
     //Property array that holds the selected skills
     public static skillsList = [];
     public static skillsIdList = [ 0 ];
+    public static selectedskillsId = [];
 
     //base url
     appUrl: string = "";
@@ -43,8 +44,11 @@ export class EmployeeComponent {
     //new employee
     employee: Employee;
 
+    //property for employeeSkills
+    public static employeeSkills: EmployeeSkills;
+
     //New inserted employee id
-    userid: any;
+    public static userid: any;
 /*----------------------------------------------------------------*/
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -61,29 +65,54 @@ export class EmployeeComponent {
         }, error => console.error(error));
         // initialize an employee
         this.employee = new Employee();
+        //initialize employeeSkills
+        EmployeeComponent.employeeSkills = new EmployeeSkills();
     };
+
 
     //Insert into db api call
     public insertEmployee(http, employee) {
-         http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
-            this.userid = data.userId as number;
-            console.log(this.userid);
-        })
+        http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
+            EmployeeComponent.userid = data.userId as number;
+            console.log(EmployeeComponent.userid);
+        });
+
+        EmployeeComponent.selectedskillsId.forEach(function (value) {
+            EmployeeComponent.employeeSkills.UserId = EmployeeComponent.userid;
+            EmployeeComponent.employeeSkills.LevelId = null;
+            EmployeeComponent.employeeSkills.SkillId = value;
+            //http.post(this, this.appUrl + 'api/EmployeeSkills').subscribe(data => {
+
+            //})
+            console.log(EmployeeComponent.employeeSkills);
+        });
+
+
     };
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
-        //this.employee.FirstName = emp.fname;
-        //this.employee.LastName = emp.lname;
-        //this.employee.Position = emp.position;
-        //this.employee.DepartmentId = emp.department;
-        //this.employee.LocationId = emp.location;
-        //this.employee.SowID = emp.sow;
-        //this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
-        //this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ")+2);
+        this.employee.FirstName = emp.fname;
+        this.employee.LastName = emp.lname;
+        this.employee.Position = emp.position;
+        this.employee.DepartmentId = emp.department;
+        this.employee.LocationId = emp.location;
+        this.employee.SowID = emp.sow;
+        this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
+        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 2);
+
+        //take the id's from the skills
+        EmployeeComponent.skillsList.forEach(function (value) {
+            //console.log(value.substr(0,value.indexOf("-")));
+            EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
+        });
+
         //insert into db
-        //this.insertEmployee(this.http,this.employee);
-        console.log(EmployeeComponent.skillsList);
+        this.insertEmployee(this.http,this.employee);
+       //console.log(EmployeeComponent.skillsList);
+       // console.log(EmployeeComponent.skillsIdList);
+
+
     }
 
 
@@ -193,6 +222,7 @@ interface Supervisor {
     supFirstName: string;
     supLastName: string;
 }
+
 interface EmployeeInfo {
     supervisors: [];
     departments: [];
@@ -212,15 +242,13 @@ class Employee {
     SupLastName: string;
 
     constructor() { };
-    //constructor(fn,ln,po,dep,loc,sow,supfn,supln) {
-    //    this.FirstName = fn;
-    //    this.LastName = ln;
-    //    this.Position = po;
-    //    this.DepartmentId = dep;
-    //    this.LocationId = loc;
-    //    this.SowID = sow;
-    //    this.SupFirstName = supfn;
-    //    this.SupLastName = supln;
-    //}
+}
+
+class EmployeeSkills {
+    UserId: number;
+    SkillId: number;
+    LevelId: number;
+
+    constructor() { };
 }
 
