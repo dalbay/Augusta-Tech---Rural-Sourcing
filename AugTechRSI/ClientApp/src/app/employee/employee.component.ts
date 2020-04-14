@@ -4,6 +4,7 @@ import { from } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { NgForm, NgModel } from '@angular/forms';
 import { forEach } from "@angular/router/src/utils/collection";
+import { async } from "rxjs/internal/scheduler/async";
 
 
 @Component({
@@ -71,14 +72,40 @@ export class EmployeeComponent {
 
 
     //Insert into db api call
-    public insertEmployee(http, employee) {
-        http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
-            EmployeeComponent.userid = data.userId as number;
-            console.log(EmployeeComponent.userid);
-        });
+//    public insertEmployee(http, employee) {
+//        http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
+//            EmployeeComponent.userid = data.userId as number;
+//console.log(EmployeeComponent.userid);
+//        });
+//    };
+    public async insertEmployee(http, employee) {
+        try {
+            const x = await http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
+                EmployeeComponent.userid = data.userId as number;
+                console.log(EmployeeComponent.userid);
+            });
+        } catch (e) {
 
+        }
+    }
+    //public insertEmployee(http, employee) {
+    //    async () => {
+    //        try {
+    //            const x = await http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
+    //                EmployeeComponent.userid = data.userId as number;
+    //                console.log(EmployeeComponent.userid);
+    //            });
+    //        } catch (e) {
+
+    //        }
+    //    }
+    //}
+
+
+    //Insert into db api call
+    public insertEmployeeSkills() {
         EmployeeComponent.selectedskillsId.forEach(function (value) {
-            EmployeeComponent.employeeSkills.UserId = EmployeeComponent.userid;
+            EmployeeComponent.employeeSkills.UserId = 201;//EmployeeComponent.userid;
             EmployeeComponent.employeeSkills.LevelId = null;
             EmployeeComponent.employeeSkills.SkillId = value;
             //http.post(this, this.appUrl + 'api/EmployeeSkills').subscribe(data => {
@@ -86,9 +113,7 @@ export class EmployeeComponent {
             //})
             console.log(EmployeeComponent.employeeSkills);
         });
-
-
-    };
+    }
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
@@ -99,7 +124,7 @@ export class EmployeeComponent {
         this.employee.LocationId = emp.location;
         this.employee.SowID = emp.sow;
         this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
-        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 2);
+        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
 
         //take the id's from the skills
         EmployeeComponent.skillsList.forEach(function (value) {
@@ -108,9 +133,11 @@ export class EmployeeComponent {
         });
 
         //insert into db
-        this.insertEmployee(this.http,this.employee);
+        this.insertEmployee(this.http, this.employee).then(function (value) {console.log('ok');});
        //console.log(EmployeeComponent.skillsList);
        // console.log(EmployeeComponent.skillsIdList);
+
+        //insert into db
 
 
     }
