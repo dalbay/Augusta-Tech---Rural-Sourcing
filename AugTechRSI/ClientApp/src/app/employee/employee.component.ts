@@ -50,6 +50,9 @@ export class EmployeeComponent {
 
     //New inserted employee id
     public static userid: any;
+    newForm: any;
+    lname: any;
+    //form: any;
 /*----------------------------------------------------------------*/
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -100,32 +103,42 @@ export class EmployeeComponent {
     };
 
     //Initialize new Employee status and call insert to db method
-    saveEmployee(emp) {
-        this.employee.FirstName = emp.fname;
-        this.employee.LastName = emp.lname;
-        this.employee.Position = emp.position;
-        this.employee.DepartmentId = emp.department;
-        this.employee.LocationId = emp.location;
-        this.employee.SowID = emp.sow;
-        this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
-        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
+    saveEmployee(emp: NgForm) {
 
-        //take the id's out of the skills
-        EmployeeComponent.skillsList.forEach(function (value) {
-            EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
-        });
+        this.newForm = {
+            lname: this.lname
+        }
+        this.saveEmployee(this.newForm);
+        emp.resetForm();
 
-        //insert into Employee
-        this.insertEmployee(this.http, this.employee).then((value) => {
-            //insert into EmployeeSkills
-            this.insertEmployeeSkills(this.http,value);
-        })
+        //this.employee.FirstName = emp.fname;
+        //this.employee.LastName = emp.lname;
+        //this.employee.Position = emp.position;
+        //this.employee.DepartmentId = emp.department;
+        //this.employee.LocationId = emp.location;
+        //this.employee.SowID = emp.sow;
+        //this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
+        //this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
+
+        ////take the id's out of the skills
+        //EmployeeComponent.skillsList.forEach(function (value) {
+        //    EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
+        //});
+
+        ////insert into Employee
+        //this.insertEmployee(this.http, this.employee).then((value) => {
+        //    //insert into EmployeeSkills
+        //    this.insertEmployeeSkills(this.http,value);
+        //})
     }
 
 
     submitted = false;
 
-    onSubmit() { this.submitted = true; }
+    onSubmit() {
+        //this.submitted = true;
+
+    }
 
     /* ***ng2-smart-table*** ------------------------------------*/
 

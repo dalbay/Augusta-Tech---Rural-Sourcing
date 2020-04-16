@@ -2,7 +2,7 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value)" >
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()" >
 
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
