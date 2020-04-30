@@ -29,7 +29,7 @@
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.3.1",
     "core-js": "2.6.5",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "ng2-completer": "^3.0.3",
     "ng2-smart-table": "^1.5.0",
     "popper.js": "^1.15.0",
