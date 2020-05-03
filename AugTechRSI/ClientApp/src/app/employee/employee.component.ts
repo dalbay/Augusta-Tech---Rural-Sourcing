@@ -53,6 +53,7 @@ export class EmployeeComponent {
     newForm: any;
     lname: any;
     //form: any;
+    positions: string[];
 /*----------------------------------------------------------------*/
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -71,6 +72,7 @@ export class EmployeeComponent {
         this.employee = new Employee();
         //initialize employeeSkills
         this.employeeSkills = new EmployeeSkills();
+        this.positions = ["Junior Associate", "Associate", "Analyst I", "Analyst II", "Senior I", "Senior II", "Principal"];
     };
 
     //Insert into Employee Method
@@ -104,6 +106,7 @@ export class EmployeeComponent {
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
+        console.log(emp);
         this.employee.FirstName = emp.fname;
         this.employee.LastName = emp.lname;
         this.employee.Position = emp.position;
@@ -126,12 +129,9 @@ export class EmployeeComponent {
     }
 
 
-    submitted = false;
 
-    onSubmit() {
-        //this.submitted = true;
 
-    }
+
 
     /* ***ng2-smart-table*** ------------------------------------*/
 
@@ -189,22 +189,47 @@ export class EmployeeComponent {
         (document.getElementById('lblFirstName') as HTMLElement).innerText = fname;
         (document.getElementById('lblLastName') as HTMLElement).innerText = lname;
     }
-    getPosition() {
+    positionHasError = true;
+    getPosition(value) {
+        if (value === undefined) {
+            this.positionHasError = true;
+        } else {
+            this.positionHasError = false;
         var positionSelect = (document.getElementById('selectPosition') as HTMLSelectElement);
-        //console.log(positionSelect.options[positionSelect.selectedIndex].text);
         (document.getElementById('lblposition') as HTMLElement).innerText = positionSelect.options[positionSelect.selectedIndex].text;
+        }
     }
-    getSupervisor() {
-        var supervisorSelect = (document.getElementById('selectSupervisor') as HTMLSelectElement);
+    supHasError = true;
+    getSupervisor(value) {
+        if (value === undefined) {
+            this.supHasError = true;
+        } else {
+            this.supHasError = false;
+            var supervisorSelect = (document.getElementById('selectSupervisor') as HTMLSelectElement);
         (document.getElementById('lblsupervisor') as HTMLElement).innerText = supervisorSelect.options[supervisorSelect.selectedIndex].text;
+        }
+
     }
-    getDepartment() {
+    depHasError = true;
+    getDepartment(value) {
+        if (value === undefined) {
+            this.depHasError = true;
+        } else {
+            this.depHasError = false;
         var departmentSelect = (document.getElementById('selectDepartment') as HTMLSelectElement);
         (document.getElementById('lbldepartment') as HTMLElement).innerText = departmentSelect.options[departmentSelect.selectedIndex].text;
+        }
     }
-    getLocation() {
-        var locationSelect = (document.getElementById('selectLocation') as HTMLSelectElement);
-        (document.getElementById('lbllocation') as HTMLElement).innerText = locationSelect.options[locationSelect.selectedIndex].text;
+    locHasError = true;
+    getLocation(value) {
+        if (value === undefined) {
+            this.locHasError = true;
+        } else {
+            this.locHasError = false;
+            var locationSelect = (document.getElementById('selectLocation') as HTMLSelectElement);
+            (document.getElementById('lbllocation') as HTMLElement).innerText = locationSelect.options[locationSelect.selectedIndex].text;
+        }
+
     }
     getSOW() {
         var sowSelect = (document.getElementById('selectSOW') as HTMLSelectElement);
@@ -245,6 +270,7 @@ interface EmployeeInfo {
 }
 
 class Employee {
+
     FirstName: string;
     LastName: string;
     Position: string;
@@ -253,8 +279,10 @@ class Employee {
     SowID: number;
     SupFirstName: string;
     SupLastName: string;
-
     constructor() { };
+
+
+
 }
 
 class EmployeeSkills {

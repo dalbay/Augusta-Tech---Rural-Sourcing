@@ -2,61 +2,104 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm); employeeForm.reset()">
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()">
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
             <div class="row">
                 <!--Begin Column 1-->
                 <div class="col-sm">
                     <!--Employee Name-->
-
-                        <div class="form-group ">
-                            <label for="inputFirstName">First Name :</label>
-                            <input
-                                   type="text"
-                                   #name="ngModel"
-                                   required
-                                   [class.is-invalid]="name.invalid && name.touched"
-                                   name="fname" [(ngModel)]="fname" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputLastName">Last Name :</label>
-                            <input type="text" name="lname" [(ngModel)]="lname" class="form-control" id="inputLastName" placeholder="Type in Last Name" (focusout)="getName()">
-                        </div>
+                    <div class="form-group ">
+                        <label for="inputFirstName">First Name :</label>
+                        <input type="text"
+                               #FirstName="ngModel"
+                               required
+                               [class.is-invalid]="FirstName.invalid && FirstName.touched"
+                               name="fname" [(ngModel)]="employee.FirstName" class="form-control"
+                               id="inputFirstName"
+                               placeholder="Type in First Name"
+                               (focusout)="getName()">
+                        <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">First name is required</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLastName">Last Name :</label>
+                        <input type="text"
+                               #LastName="ngModel"
+                               required
+                               [class.is-invalid]="LastName.invalid && LastName.touched" name="lname"
+                               [(ngModel)]="employee.LastName"
+                               class="form-control"
+                               id="inputLastName"
+                               placeholder="Type in Last Name"
+                               (focusout)="getName()">
+                        <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">Last name is required</small>
+                    </div>
 
                     <!--Level-->
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
-                        <select name="position" [(ngModel)]="position" class="custom-select" id="selectPosition" (change)="getPosition()">
-                            <option value="Junior Associate">Junior Associate</option>
-                            <option value="Associate">Associate</option>
-                            <option value="Analyst I">Analyst I</option>
-                            <option value="Analyst II">Analyst II</option>
-                            <option value="Senior I">Senior I</option>
-                            <option value="Senior II">Senior II</option>
-                            <option value="Principal">Principal</option>
+                        <select name="position"
+                                #Position="ngModel"
+                                [(ngModel)]="employee.Position"
+                                [class.is-invalid]="positionHasError && Position.touched"
+                                class="custom-select" id="selectPosition"
+                                (change)="getPosition(Position.value)"
+                                (blur)="getPosition(Position.value)">
+                            <option *ngFor="let position of positions">{{ position }}</option>
+    <!--<option value="Junior Associate">Junior Associate</option>
+    <option value="Associate">Associate</option>
+    <option value="Analyst I">Analyst I</option>
+    <option value="Analyst II">Analyst II</option>
+    <option value="Senior I">Senior I</option>
+    <option value="Senior II">Senior II</option>
+    <option value="Principal">Principal</option>-->
                         </select>
+                        <small class="text-danger" [class.d-none]="!positionHasError || Position.untouched">Please choose a position</small>
                     </div>
                     <!--Supervisor-->
                     <div class="form-group">
                         <label for="selectSupervisor">Supervisor :</label>
-                        <select name="supervisor" [(ngModel)]="supervisor" class="custom-select" id="selectSupervisor" (change)="getSupervisor()">
+                        <select name="supervisor"
+                                #SupFirstName="ngModel"
+                                [(ngModel)]="employee.SupFirstName"
+                                [class.is-invalid]="supHasError && SupFirstName.touched"
+                                class="custom-select"
+                                id="selectSupervisor"
+                                (change)="getSupervisor(SupFirstName.value)"
+                                (blur)="getSupervisor(SupFirstName.value)">
                             <option *ngFor="let supervisor of supervisors" value="{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}">{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}</option>
                         </select>
+                        <small class="text-danger" [class.d-none]="!supHasError || SupFirstName.untouched">Please choose a supervisor</small>
                     </div>
                     <!--Department-->
                     <div class="form-group">
                         <label for="selectDepartment">Department :</label>
-                        <select name="department" [(ngModel)]="department" class="custom-select" id="selectDepartment" (change)="getDepartment()">
+                        <select name="department"
+                                #DepartmentId="ngModel"
+                                [(ngModel)]="employee.DepartmentId"
+                                [class.is-invalid]="depHasError && DepartmentId.touched"
+                                class="custom-select"
+                                id="selectDepartment"
+                                (change)="getDepartment(DepartmentId.value)"
+                                (blur)="getDepartment(DepartmentId.value)">
                             <option *ngFor="let department of departments" value="{{ department.departmentId }}">{{ department.departmentName }}</option>
                         </select>
+                        <small class="text-danger" [class.d-none]="!depHasError || DepartmentId.untouched">Please choose a department</small>
                     </div>
                     <!--Location-->
                     <div class="form-group">
                         <label for="selectLocation">Location :</label>
-                        <select name="location" [(ngModel)]="location" class="custom-select" id="selectLocation" (change)="getLocation()">
+                        <select name="location"
+                                #LocationId="ngModel"
+                                [(ngModel)]="employee.LocationId"
+                                [class.is-invalid]="locHasError && LocationId.touched"
+                                class="custom-select"
+                                id="selectLocation"
+                                (change)="getLocation(LocationId.value)"
+                                (blur)="getLocation(LocationId.value)">
                             <option *ngFor="let location of locations" value="{{ location.locationId }}">{{ location.locationName }}</option>
                         </select>
+                        <small class="text-danger" [class.d-none]="!locHasError || LocationId.untouched">Please choose a location</small>
                     </div>
                     <!--SOW-->
                     <div class="form-group">
@@ -120,7 +163,7 @@
                             <label id="lblsow">-</label>
                         </div>
                         <div class="col-sm-6">
-                            <button style="float:right" type="submit" class="btn btn-primary">Add Employee</button>
+                            <button [disabled]="employeeForm.form.invalid || positionHasError || supHasError || depHasError || locHasError" style="float:right" type="submit" class="btn btn-primary">Add Employee</button>
                         </div>
                     </div>
                 </div>
@@ -130,6 +173,3 @@
     </div>
 </div>
 <!------------------------------------->
-
-
-
