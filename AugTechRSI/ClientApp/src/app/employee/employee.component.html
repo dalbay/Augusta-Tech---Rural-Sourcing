@@ -2,19 +2,18 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()" >
-
+        {{employeeForm.value | json}}
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()">
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
             <div class="row">
                 <!--Begin Column 1-->
                 <div class="col-sm">
-
                     <!--Employee Name-->
                     <div class="row">
                         <div class="form-group ">
                             <label for="inputFirstName">First Name :</label>
-                            <input type="text" name="fname" [(ngModel)]="fname" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
+                            <input type="text" name="fname" [(ngModel)]="FirstName" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
                         </div>
                         <div class="form-group">
                             <label for="inputLastName">Last Name :</label>
@@ -41,7 +40,6 @@
                             <option *ngFor="let supervisor of supervisors" value="{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}">{{ supervisor.supFirstName + ' ' + supervisor.supLastName }}</option>
                         </select>
                     </div>
-
                     <!--Department-->
                     <div class="form-group">
                         <label for="selectDepartment">Department :</label>
@@ -69,7 +67,6 @@
                 <div class="col-sm">
                     <ng2-smart-table [settings]="settings" [source]="source" (rowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
                 </div>
-
             </div>
             <!--End 1.Row-->
             <!--Begin 2.Row-->
@@ -118,8 +115,8 @@
                             <h5 class="display-5">SOW:</h5>
                             <label id="lblsow">-</label>
                         </div>
-                        <div  class="col-sm-6">
-                            <button style="float:right"  type="submit" class="btn btn-primary">Add Employee</button>
+                        <div class="col-sm-6">
+                            <button style="float:right" class="btn btn-primary">Add Employee</button>
                         </div>
                     </div>
                 </div>
@@ -129,6 +126,6 @@
     </div>
 </div>
 <!------------------------------------->
-{{employeeForm.value | json}}
+
 
 

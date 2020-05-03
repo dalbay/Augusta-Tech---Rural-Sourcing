@@ -94,7 +94,7 @@ export class EmployeeComponent {
             emp.SkillID = value;
             emp.LevelID = null;
             return new Promise((resolve, reject) => {
-                http.post(url + 'api/EmployeeSkills', emp).subscribe(data => {
+                http.post(url + 'api/EmployeeInfo', emp).subscribe(data => {
                     console.log('Saved to db : ' + emp);
                 })
             });
@@ -103,33 +103,26 @@ export class EmployeeComponent {
     };
 
     //Initialize new Employee status and call insert to db method
-    saveEmployee(emp: NgForm) {
+    saveEmployee(emp) {
+        this.employee.FirstName = emp.fname;
+        this.employee.LastName = emp.lname;
+        this.employee.Position = emp.position;
+        this.employee.DepartmentId = emp.department;
+        this.employee.LocationId = emp.location;
+        this.employee.SowID = emp.sow;
+        this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
+        this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
 
-        this.newForm = {
-            lname: this.lname
-        }
-        this.saveEmployee(this.newForm);
-        emp.resetForm();
+        //take the id's out of the skills
+        EmployeeComponent.skillsList.forEach(function (value) {
+            EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
+        });
 
-        //this.employee.FirstName = emp.fname;
-        //this.employee.LastName = emp.lname;
-        //this.employee.Position = emp.position;
-        //this.employee.DepartmentId = emp.department;
-        //this.employee.LocationId = emp.location;
-        //this.employee.SowID = emp.sow;
-        //this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
-        //this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
-
-        ////take the id's out of the skills
-        //EmployeeComponent.skillsList.forEach(function (value) {
-        //    EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
-        //});
-
-        ////insert into Employee
-        //this.insertEmployee(this.http, this.employee).then((value) => {
-        //    //insert into EmployeeSkills
-        //    this.insertEmployeeSkills(this.http,value);
-        //})
+        //insert into Employee
+        this.insertEmployee(this.http, this.employee).then((value) => {
+            //insert into EmployeeSkills
+            this.insertEmployeeSkills(this.http,value);
+        })
     }
 
 
