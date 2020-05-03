@@ -2,24 +2,28 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        {{employeeForm.value | json}}
-        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()">
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm); employeeForm.reset()">
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
             <div class="row">
                 <!--Begin Column 1-->
                 <div class="col-sm">
                     <!--Employee Name-->
-                    <div class="row">
+
                         <div class="form-group ">
                             <label for="inputFirstName">First Name :</label>
-                            <input type="text" name="fname" [(ngModel)]="FirstName" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
+                            <input
+                                   type="text"
+                                   #name="ngModel"
+                                   required
+                                   [class.is-invalid]="name.invalid && name.touched"
+                                   name="fname" [(ngModel)]="fname" class="form-control" id="inputFirstName" placeholder="Type in First Name" (focusout)="getName()">
                         </div>
                         <div class="form-group">
                             <label for="inputLastName">Last Name :</label>
                             <input type="text" name="lname" [(ngModel)]="lname" class="form-control" id="inputLastName" placeholder="Type in Last Name" (focusout)="getName()">
                         </div>
-                    </div>
+
                     <!--Level-->
                     <div class="form-group">
                         <label for="selectPosition">Level :</label>
@@ -116,7 +120,7 @@
                             <label id="lblsow">-</label>
                         </div>
                         <div class="col-sm-6">
-                            <button style="float:right" class="btn btn-primary">Add Employee</button>
+                            <button style="float:right" type="submit" class="btn btn-primary">Add Employee</button>
                         </div>
                     </div>
                 </div>
