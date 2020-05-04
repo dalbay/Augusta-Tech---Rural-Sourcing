@@ -5,18 +5,35 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
+
         <h3 class="display-4">Add New Category...</h3>
-        <form class="form-horizontal">
+        <form class="form-horizontal" #categoryForm="ngForm"(ngSubmit)="saveCategory(categoryForm.value); categoryForm.reset()">
             <div class="form-group ">
                 <label class="addCategory" for="categoryName">Category Name :</label>
-                <input type="text" class="form-control" id="categoryName" placeholder="Type in New Category" name="categoryName">
+                <input type="text"
+                       class="form-control"
+                       #typeName="ngModel"
+                       [class.is-invalid]="typeName.invalid && typeName.touched"
+                       required [(ngModel)]="category.typeName"
+                       id="categoryName"
+                       placeholder="Type in New Category"
+                       name="categoryName" />
+                <small class="text-danger" [class.d-none]="typeName.valid || typeName.untouched">Category name is required</small>
             </div>
             <div class="form-group form-skillCategory">
                 <label class="addCategory" for="categoryDescription">Description :</label>
-                <textarea id="categoryDescription" class="form-control" name="categoryDescription" style="width:100%;"></textarea>
-
-            </div>                <div class="input-group-append">
-                <button type="button" class="btn btn-primary">Add Category</button>
+                <textarea id="categoryDescription"
+                          class="form-control"
+                          name="categoryDescription"
+                          #typeDescription="ngModel"
+                          [class.is-invalid]="typeDescription.invalid && typeDescription.touched"
+                          required [(ngModel)]="category.typeDescription"
+                          style="width:100%;">
+                </textarea>
+                <small class="text-danger" [class.d-none]="typeDescription.valid || typeDescription.untouched">Description is required</small>
+            </div>
+            <div class="input-group-append">
+                <button type="button" [disabled]="categoryForm.form.invalid" class="btn btn-primary">Add Category</button>
             </div>
         </form>
     </div>
