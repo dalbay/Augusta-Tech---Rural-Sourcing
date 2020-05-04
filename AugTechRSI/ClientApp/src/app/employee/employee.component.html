@@ -2,6 +2,64 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
+        <!-- Button trigger modal -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert alert-success" role="alert">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h5>New Employee</h5>
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Supervisor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let emp of modalEmployee">
+                                    <td>{{ emp.fname + " " + emp.lname}}</td>
+                                    <td>{{ emp.location }}</td>
+                                    <td>{{ emp.supervisor }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h5>Qualified Skills</h5>
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Supervisor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let emp of modalEmployee">
+                                    <td>{{ emp.fname + " " + emp.lname}}</td>
+                                    <td>{{ emp.location }}</td>
+                                    <td>{{ emp.supervisor }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm.value); employeeForm.reset()">
             <h3 class="display-4">Add New Employee</h3>
             <!--Begin 1.Row-->
@@ -46,13 +104,13 @@
                                 (change)="getPosition(Position.value)"
                                 (blur)="getPosition(Position.value)">
                             <option *ngFor="let position of positions">{{ position }}</option>
-    <!--<option value="Junior Associate">Junior Associate</option>
-    <option value="Associate">Associate</option>
-    <option value="Analyst I">Analyst I</option>
-    <option value="Analyst II">Analyst II</option>
-    <option value="Senior I">Senior I</option>
-    <option value="Senior II">Senior II</option>
-    <option value="Principal">Principal</option>-->
+                            <!--<option value="Junior Associate">Junior Associate</option>
+                        <option value="Associate">Associate</option>
+                        <option value="Analyst I">Analyst I</option>
+                        <option value="Analyst II">Analyst II</option>
+                        <option value="Senior I">Senior I</option>
+                        <option value="Senior II">Senior II</option>
+                        <option value="Principal">Principal</option>-->
                         </select>
                         <small class="text-danger" [class.d-none]="!positionHasError || Position.untouched">Please choose a position</small>
                     </div>

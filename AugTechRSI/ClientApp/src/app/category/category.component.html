@@ -5,9 +5,41 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert alert-success" role="alert">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table' *ngIf="category">
+                            <thead>
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Category Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ modalCategory.typeId }}</td>
+                                    <td>{{ modalCategory.typeName }}</td>
+                                    <td>{{ modalCategory.typeDescription }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <h3 class="display-4">Add New Category...</h3>
-        <form class="form-horizontal" #categoryForm="ngForm"(ngSubmit)="saveCategory(categoryForm.value); categoryForm.reset()">
+        <form class="form-horizontal" #categoryForm="ngForm" (ngSubmit)="saveCategory(categoryForm.value); categoryForm.reset()">
             <div class="form-group ">
                 <label class="addCategory" for="categoryName">Category Name :</label>
                 <input type="text"
@@ -33,7 +65,8 @@
                 <small class="text-danger" [class.d-none]="typeDescription.valid || typeDescription.untouched">Description is required</small>
             </div>
             <div class="input-group-append">
-                <button type="button" [disabled]="categoryForm.form.invalid" class="btn btn-primary">Add Category</button>
+                <button type="submit" [disabled]="categoryForm.form.invalid" class="btn btn-primary"
+                         data-toggle="modal" data-target="#exampleModalCenter">Add Category</button>
             </div>
         </form>
     </div>

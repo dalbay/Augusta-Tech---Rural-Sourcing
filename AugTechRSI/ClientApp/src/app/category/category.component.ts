@@ -13,15 +13,46 @@ export class CategoryComponent implements OnInit {
     public categories: Category[] = [];
 
     //new cateogry
-    category: any;
+    category: NewCategory;
+    //base url
+    appUrl: string = "";
+    //http
+    http: HttpClient;
+    //new category's id
+    categoryId: number;
+    //modal display category
+    modalCategory: NewCategory;
+
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        this.http = http;
+        this.appUrl = baseUrl;
         http.get(baseUrl + 'api/Category').subscribe(result => {
             this.categories = result as Category[];
         }, error => console.error(error));
 
         this.category = new NewCategory();
+        this.modalCategory = new NewCategory();
     }
+    //Initialize new Employee status and call insert to db method
+    saveCategory(value) {
+        this.category.typeName = value.categoryName;
+        this.modalCategory.typeName = value.categoryName
+        this.category.typeDescription = value.categoryDescription;
+        this.modalCategory.typeDescription = value.categoryDescription;
+        //insert into Categories
+        return new Promise((resolve, reject) => {
+            this.http.post(this.appUrl + 'api/Category', this.category).subscribe(data => {
+                this.modalCategory.typeId = data as number;
+
+                var url = this.appUrl;
+
+                resolve(url);
+
+            },error => console.error(error));
+        })
+    }
+
     ngOnInit() { }
 }
 

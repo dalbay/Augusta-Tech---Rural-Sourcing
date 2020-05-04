@@ -44,6 +44,8 @@ export class EmployeeComponent {
 
     //new employee
     employee: Employee;
+    //new employee in Modal display
+    modalEmployee: any[];
 
     //property for employeeSkills
     employeeSkills: EmployeeSkills;
@@ -70,6 +72,8 @@ export class EmployeeComponent {
         }, error => console.error(error));
         // initialize an employee
         this.employee = new Employee();
+        // initialze an employee to display in modal
+        this.modalEmployee = new Array();
         //initialize employeeSkills
         this.employeeSkills = new EmployeeSkills();
         this.positions = ["Junior Associate", "Associate", "Analyst I", "Analyst II", "Senior I", "Senior II", "Principal"];
@@ -81,7 +85,6 @@ export class EmployeeComponent {
             http.post(this.appUrl + 'api/EmployeeInfo', employee).subscribe(data => {
                 EmployeeComponent.userid = data.userId as number;
                 var url = this.appUrl;
-                //resolve(data.userId as number);
                 resolve(url);
             });
         })
@@ -95,18 +98,18 @@ export class EmployeeComponent {
             emp.UserID = EmployeeComponent.userid;
             emp.SkillID = value;
             emp.LevelID = null;
+            console.log(emp);
             return new Promise((resolve, reject) => {
-                http.post(url + 'api/EmployeeInfo', emp).subscribe(data => {
+                http.post(url + 'api/EmployeeSkills', emp).subscribe(data => {
                     console.log('Saved to db : ' + emp);
                 })
             });
-
         });
     };
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
-        console.log(emp);
+        //console.log(emp);
         this.employee.FirstName = emp.fname;
         this.employee.LastName = emp.lname;
         this.employee.Position = emp.position;
@@ -115,7 +118,8 @@ export class EmployeeComponent {
         this.employee.SowID = emp.sow;
         this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
         this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
-
+        this.modalEmployee.push(emp);
+        console.log(EmployeeComponent.skillsList);
         //take the id's out of the skills
         EmployeeComponent.skillsList.forEach(function (value) {
             EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
@@ -175,9 +179,6 @@ export class EmployeeComponent {
             var z = EmployeeComponent.skillsIdList.splice(EmployeeComponent.skillsIdList.indexOf(event.data.skillId), 1);
             console.log('deleted: ' +z);
         }
-
-        //console.log(EmployeeComponent.skillsIdList);
-        //console.log(EmployeeComponent.skillsList);
         selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
     }
 
@@ -280,9 +281,6 @@ class Employee {
     SupFirstName: string;
     SupLastName: string;
     constructor() { };
-
-
-
 }
 
 class EmployeeSkills {
