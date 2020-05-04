@@ -46,6 +46,8 @@ export class EmployeeComponent {
     employee: Employee;
     //new employee in Modal display
     modalEmployee: any[];
+    //new employee skill in Modal display
+    modalSkills: any[];
 
     //property for employeeSkills
     employeeSkills: EmployeeSkills;
@@ -74,6 +76,8 @@ export class EmployeeComponent {
         this.employee = new Employee();
         // initialze an employee to display in modal
         this.modalEmployee = new Array();
+        // initialize skills to display in modal
+        this.modalSkills = new Array();
         //initialize employeeSkills
         this.employeeSkills = new EmployeeSkills();
         this.positions = ["Junior Associate", "Associate", "Analyst I", "Analyst II", "Senior I", "Senior II", "Principal"];
@@ -86,30 +90,27 @@ export class EmployeeComponent {
                 EmployeeComponent.userid = data.userId as number;
                 var url = this.appUrl;
                 resolve(url);
-            });
+            }, error => console.error(error));
         })
     }
 
     //Insert into EmployeeSkills Method
     public insertEmployeeSkills(http, url) {
-        console.log('inside insertEmployeeSkills');
         EmployeeComponent.selectedskillsId.forEach(function (value) {
-             var emp = new  EmployeeSkills();
+            var emp = new  EmployeeSkills();
             emp.UserID = EmployeeComponent.userid;
             emp.SkillID = value;
             emp.LevelID = null;
-            console.log(emp);
             return new Promise((resolve, reject) => {
                 http.post(url + 'api/EmployeeSkills', emp).subscribe(data => {
                     console.log('Saved to db : ' + emp);
-                })
+                }, error => console.error(error));
             });
         });
     };
 
     //Initialize new Employee status and call insert to db method
     saveEmployee(emp) {
-        //console.log(emp);
         this.employee.FirstName = emp.fname;
         this.employee.LastName = emp.lname;
         this.employee.Position = emp.position;
@@ -119,7 +120,12 @@ export class EmployeeComponent {
         this.employee.SupFirstName = emp.supervisor.substring(0, emp.supervisor.indexOf(" "));
         this.employee.SupLastName = emp.supervisor.substring(emp.supervisor.indexOf(" ") + 1);
         this.modalEmployee.push(emp);
-        console.log(EmployeeComponent.skillsList);
+
+        //add skills to modal array
+        for (let entry of EmployeeComponent.skillsList) {
+            console.log(entry);
+            this.modalSkills.push(entry);
+        }
         //take the id's out of the skills
         EmployeeComponent.skillsList.forEach(function (value) {
             EmployeeComponent.selectedskillsId.push(value.substr(0, value.indexOf("-")));
@@ -128,8 +134,11 @@ export class EmployeeComponent {
         //insert into Employee
         this.insertEmployee(this.http, this.employee).then((value) => {
             //insert into EmployeeSkills
-            this.insertEmployeeSkills(this.http,value);
-        })
+            this.insertEmployeeSkills(this.http, value);
+        });
+
+        //clear all label controls
+        this.clearLbl();
     }
 
 
@@ -182,7 +191,6 @@ export class EmployeeComponent {
         selectedSkillsTextArea.value = EmployeeComponent.skillsList.toString();
     }
 
-    /* ----------------------------------------------------*/
     /* ***List input values to labels***------------------ */
     getName() {
         var fname = (document.getElementById('inputFirstName') as HTMLInputElement).value;
@@ -235,6 +243,17 @@ export class EmployeeComponent {
     getSOW() {
         var sowSelect = (document.getElementById('selectSOW') as HTMLSelectElement);
         (document.getElementById('lblsow') as HTMLElement).innerText = sowSelect.options[sowSelect.selectedIndex].text;
+    }
+
+    // Clear labels
+    clearLbl() {
+        (document.getElementById('lblFirstName') as HTMLElement).innerText = "-";
+        (document.getElementById('lblLastName') as HTMLElement).innerText = "-";
+        (document.getElementById('lbllocation') as HTMLElement).innerText = "-";
+        (document.getElementById('lblposition') as HTMLElement).innerText = "-";
+        (document.getElementById('lblsow') as HTMLElement).innerText = "-";
+        (document.getElementById('lbldepartment') as HTMLElement).innerText = "-";
+        (document.getElementById('lblsupervisor') as HTMLElement).innerText = "-";
     }
 
 /*-----------------------------------------------------------*/

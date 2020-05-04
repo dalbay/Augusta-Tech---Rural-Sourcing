@@ -2,19 +2,13 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <!-- Button trigger modal -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Launch demo modal
-        </button>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="alert alert-success" role="alert">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Employee was successfully created!</h5>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -30,26 +24,24 @@
                             <tbody>
                                 <tr *ngFor="let emp of modalEmployee">
                                     <td>{{ emp.fname + " " + emp.lname}}</td>
-                                    <td>{{ emp.location }}</td>
+                                    <td>{{ emp.position }}</td>
                                     <td>{{ emp.supervisor }}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <hr>
-                        <h5>Qualified Skills</h5>
+                        <h5>Qualifications</h5>
                         <table class='table'>
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Supervisor</th>
+                                    <th>Skill</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let emp of modalEmployee">
-                                    <td>{{ emp.fname + " " + emp.lname}}</td>
-                                    <td>{{ emp.location }}</td>
-                                    <td>{{ emp.supervisor }}</td>
+                                <tr *ngFor="let skill of modalSkills">
+                                    <td>{{ skill }}</td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -104,13 +96,6 @@
                                 (change)="getPosition(Position.value)"
                                 (blur)="getPosition(Position.value)">
                             <option *ngFor="let position of positions">{{ position }}</option>
-                            <!--<option value="Junior Associate">Junior Associate</option>
-                        <option value="Associate">Associate</option>
-                        <option value="Analyst I">Analyst I</option>
-                        <option value="Analyst II">Analyst II</option>
-                        <option value="Senior I">Senior I</option>
-                        <option value="Senior II">Senior II</option>
-                        <option value="Principal">Principal</option>-->
                         </select>
                         <small class="text-danger" [class.d-none]="!positionHasError || Position.untouched">Please choose a position</small>
                     </div>
@@ -170,7 +155,7 @@
                 </div>
                 <!--Begin Column 2-->
                 <div class="col-sm">
-                    <ng2-smart-table [settings]="settings" [source]="source" (rowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
+                    <ng2-smart-table name="tblSkills" [settings]="settings" [source]="source"  (rowSelect)="onRowSelect($event)" class="table"></ng2-smart-table>
                 </div>
             </div>
             <!--End 1.Row-->
@@ -180,31 +165,31 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">First Name:</h5>
-                            <label id="lblFirstName">-</label>
+                            <label ngModel name="lblFName" id="lblFirstName">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Last Name:</h5>
-                            <label id="lblLastName">-</label>
+                            <label ngModel name="lblLName" id="lblLastName">-</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">Level:</h5>
-                            <label id="lblposition">-</label>
+                            <label ngModel name="lblLevel" id="lblposition">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Supervisor:</h5>
-                            <label id="lblsupervisor">-</label>
+                            <label ngModel name="lblSupervisor" id="lblsupervisor">-</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">Department:</h5>
-                            <label id="lbldepartment">-</label>
+                            <label ngModel name="lblDepartment" id="lbldepartment">-</label>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="display-5">Location:</h5>
-                            <label id="lbllocation">-</label>
+                            <label ngModel name="lblLoc" id="lbllocation">-</label>
                         </div>
                     </div>
                 </div>
@@ -212,16 +197,16 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h5 class="display-5">Selected Skills:</h5>
-                            <textarea readonly class="form-control" id="skillsTextArea" rows="4"></textarea>
+                            <textarea ngModel name="txtSkills" readonly class="form-control" id="skillsTextArea" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="display-5">SOW:</h5>
-                            <label id="lblsow">-</label>
+                            <label ngModel name="lblSOW" id="lblsow">-</label>
                         </div>
                         <div class="col-sm-6">
-                            <button [disabled]="employeeForm.form.invalid || positionHasError || supHasError || depHasError || locHasError" style="float:right" type="submit" class="btn btn-primary">Add Employee</button>
+                            <button [disabled]="employeeForm.form.invalid || positionHasError || supHasError || depHasError || locHasError" style="float:right" type="submit" class="btn btn-primary" on data-toggle="modal" data-target="#exampleModalCenter" tab >Add Employee</button>
                         </div>
                     </div>
                 </div>
