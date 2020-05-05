@@ -70,14 +70,16 @@
                 <select class="custom-select"
                         #typeName="ngModel"
                         [(ngModel)]="allCategories.typeName"
-
+                        [class.is-invalid]="catHasError && typeName.touched"
                         id="selectCategory"
-                        name="categorySelect">
-                    <option *ngFor="let category of allCategories" >{{ category.typeName}}</option>
+                        name="categorySelect"
+                        (change)="getCategory(typeName.value)"
+                        (blur)="getCategory(typeName.value)">
+                    <option *ngFor="let category of allCategories" value="{{ category.TypeId}}" >{{ category.typeName}}</option>
                 </select>
             </div>
             <div class="input-group-append">
-                <button type="button" class="btn btn-primary">Add Skill</button>
+                <button type="submit" class="btn btn-primary">Add Skill</button>
             </div>
         </form>
     </div>

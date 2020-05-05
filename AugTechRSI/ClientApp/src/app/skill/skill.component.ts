@@ -20,18 +20,15 @@ export class SkillComponent implements OnInit {
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
-
         // retrieve skills
         http.get(baseUrl + 'api/Skills').subscribe(result => {
             this.allSkills = result as AllSkill[];
             this.source = new LocalDataSource(this.allSkills);
-            //gets the categories from the skills tabl
         }, error => console.error(error));
 
         // retrieve categories
         http.get(baseUrl + 'api/Category').subscribe(result => {
             this.allCategories = result as AllCategories[];
-            console.log(this.allCategories)
         }, error => console.log(error));
     };
 
@@ -47,7 +44,16 @@ export class SkillComponent implements OnInit {
         actions: { add: false, delete: false,},
     };
 
-    ngOnInit() {}
+    ngOnInit() { }
+
+    catHasError = true;
+    getCategory(value) {
+        if (value === undefined) {
+            this.catHasError = true;
+        } else {
+            this.catHasError = false;
+        }
+    }
 }
 
 interface AllSkill {

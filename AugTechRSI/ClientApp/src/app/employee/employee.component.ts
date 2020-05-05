@@ -214,7 +214,6 @@ export class EmployeeComponent {
             var supervisorSelect = (document.getElementById('selectSupervisor') as HTMLSelectElement);
         (document.getElementById('lblsupervisor') as HTMLElement).innerText = supervisorSelect.options[supervisorSelect.selectedIndex].text;
         }
-
     }
     depHasError = true;
     getDepartment(value) {
