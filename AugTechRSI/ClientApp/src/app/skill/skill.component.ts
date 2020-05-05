@@ -9,26 +9,25 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class SkillComponent implements OnInit {
 
-    // skill properties
-    public allSkills: AllSkill[] = [];
-    public categories: string[] = [];
-    public distCategories: string[];
+    source: LocalDataSource;
+
+    // all skills
+    public allSkills: AllSkill[];
+
+    // new skill
+    skill: Skill;
 
     // category properties
     public allCategories: AllCategories[];
     //add a property to the component
-    source: LocalDataSource;
-
-    //new skill property
-    skill: Skill;
 
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
-        // initialize new skill;
-        this.skill = new Skill;
         // initialize Category array
         this.allCategories = new Array();
+        //initialize a new Skill
+        this.skill = new Skill();
 
         // retrieve skills
         http.get(baseUrl + 'api/Skills').subscribe(result => {
@@ -36,11 +35,11 @@ export class SkillComponent implements OnInit {
             this.source = new LocalDataSource(this.allSkills);
 
             //gets the categories from the skills table
-            for (var i = 0; i < this.allSkills.length; i++) {
-                this.categories.push(this.allSkills[i].typeName);
-            }
-            console.log(this.categories);
-            this.distCategories = this.categories.filter((n, i) => this.categories.indexOf(n) === i);
+            //for (var i = 0; i < this.allSkills.length; i++) {
+            //    this.categories.push(this.allSkills[i].typeName);
+            //}
+            //console.log(this.categories);
+            //this.distCategories = this.categories.filter((n, i) => this.categories.indexOf(n) === i);
             //---------------------------------------------
 
         }, error => console.error(error));
@@ -67,10 +66,6 @@ export class SkillComponent implements OnInit {
     ngOnInit() {}
 }
 
-
-//interface Category {
-//    categoryName: string;
-//}
 interface AllSkill {
     SkillId: number;
     SkillTitle: string;
@@ -79,15 +74,19 @@ interface AllSkill {
     totalSkilledEmployees: number;
     totalAvailableEmployees: number;
 }
+
+class Skill {
+    SkillTitle: string;
+    SkillDescription: string;
+    typeName: string;
+    constructor() { };
+}
+
 interface AllCategories {
     TypeId: number;
     TypeName: string;
     TypeDescription: string;
 }
-class Skill {
-    skillTitle: string;
-    skillDescription: string;
-    categoryName: string;
-}
+
 
 

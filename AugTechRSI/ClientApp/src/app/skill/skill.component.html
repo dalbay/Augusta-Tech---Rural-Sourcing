@@ -41,15 +41,15 @@
             <div class="form-group ">
                 <label for="skillName">Skill Name :</label>
                 <input type="text"
-                       #skillTitle="ngModel"
-                       [class.is-invalid]="skillTitle.invalid && skillTitle.touched"
+                       #SkillTitle="ngModel"
+                       [class.is-invalid]="SkillTitle.invalid && SkillTitle.touched"
                        required
-                       [(ngModel)]="skill.skillTitle"
+                       [(ngModel)]="skill.SkillTitle"
                        class="form-control"
                        id="skillName"
                        placeholder="Type in a new skill"
                        name="skillName">
-                <small class="text-danger" [class.d-none]="skillTitle.valid || skillTitle.untouched">Skill name is required</small>
+                <small class="text-danger" [class.d-none]="SkillTitle.valid || SkillTitle.untouched">Skill name is required</small>
             </div>
             <div class="form-group ">
                 <label class="addCategory" for="skillDescription">Description :</label>
@@ -75,7 +75,7 @@
                         (change)="getCategory(categoryName.value)"
                         (blur)="getCategory(categoryName.value)"
                         name="categorySelect">
-                    <option *ngFor="let category of distCategories" value="1">{{ category }}</option>
+                    <option *ngFor="let category of allCategories.TypeName" value="1">{{ category}}</option>
                 </select>
             </div>
             <div class="input-group-append">

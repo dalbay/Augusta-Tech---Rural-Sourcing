@@ -43,8 +43,8 @@ export class CategoryComponent implements OnInit {
         //insert into Categories
         return new Promise((resolve, reject) => {
             this.http.post(this.appUrl + 'api/Category', this.category).subscribe(data => {
-                this.modalCategory.typeId = data as number;
-
+                var savedCategory = data as Category;
+                this.modalCategory.typeId = savedCategory.typeId;
                 var url = this.appUrl;
 
                 resolve(url);
