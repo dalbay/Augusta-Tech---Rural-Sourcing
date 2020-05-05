@@ -12,42 +12,26 @@ export class SkillComponent implements OnInit {
     source: LocalDataSource;
 
     // all skills
-    public allSkills: AllSkill[];
-
-    // new skill
-    skill: Skill;
+    public allSkills: AllSkill[] = [];
 
     // category properties
-    public allCategories: AllCategories[];
-    //add a property to the component
+    public allCategories: AllCategories[] =[];
 
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
-        // initialize Category array
-        this.allCategories = new Array();
-        //initialize a new Skill
-        this.skill = new Skill();
 
         // retrieve skills
         http.get(baseUrl + 'api/Skills').subscribe(result => {
             this.allSkills = result as AllSkill[];
             this.source = new LocalDataSource(this.allSkills);
-
-            //gets the categories from the skills table
-            //for (var i = 0; i < this.allSkills.length; i++) {
-            //    this.categories.push(this.allSkills[i].typeName);
-            //}
-            //console.log(this.categories);
-            //this.distCategories = this.categories.filter((n, i) => this.categories.indexOf(n) === i);
-            //---------------------------------------------
-
+            //gets the categories from the skills tabl
         }, error => console.error(error));
 
         // retrieve categories
         http.get(baseUrl + 'api/Category').subscribe(result => {
             this.allCategories = result as AllCategories[];
-
+            console.log(this.allCategories)
         }, error => console.log(error));
     };
 

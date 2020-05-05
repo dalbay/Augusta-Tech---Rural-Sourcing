@@ -44,7 +44,7 @@
                        #SkillTitle="ngModel"
                        [class.is-invalid]="SkillTitle.invalid && SkillTitle.touched"
                        required
-                       [(ngModel)]="skill.SkillTitle"
+                       [(ngModel)]="allSkills.SkillTitle"
                        class="form-control"
                        id="skillName"
                        placeholder="Type in a new skill"
@@ -58,7 +58,7 @@
                           #skillDescription="ngModel"
                           [class.is-invalid]="skillDescription.invalid && skillDescription.touched"
                           required
-                          [(ngModel)]="skill.skillDescription"
+                          [(ngModel)]="allSkills.skillDescription"
                           class="form-control"
 
                           style="width:100%;">
@@ -68,14 +68,12 @@
             <div class="form-group">
                 <label for="selectCategory">Category :</label>
                 <select class="custom-select"
-                        #categoryName="ngModel"
-                        [(ngModel)]="skill.categoryName"
-                        [class.is-invalid]="supHasError && SupFirstName.touched"
+                        #typeName="ngModel"
+                        [(ngModel)]="allCategories.typeName"
+
                         id="selectCategory"
-                        (change)="getCategory(categoryName.value)"
-                        (blur)="getCategory(categoryName.value)"
                         name="categorySelect">
-                    <option *ngFor="let category of allCategories.TypeName" value="1">{{ category}}</option>
+                    <option *ngFor="let category of allCategories" >{{ category.typeName}}</option>
                 </select>
             </div>
             <div class="input-group-append">
