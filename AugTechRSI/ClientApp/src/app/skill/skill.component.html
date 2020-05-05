@@ -3,22 +3,83 @@
 <!------------Add Skill Form------------------------->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h3 class="display-4">Add New Skill...</h3>
-        <form class="form-inline">
-            <div class="form-group ">
-                <label class="addSkill" for="skillName">Skill Name :</label>
-                <input type="text" class="form-control" id="skillName" placeholder="Type in New Skill" name="skillName">
-            </div>
-            <div class="form-group form-skillCategory">
-                <label class="addSkill" for="inputGroupSelect02">Category :</label>
-                <select class="custom-select" id="inputGroupSelect02">
-                    <option selected>Choose a Category...</option>
-                    <option  *ngFor="let category of distCategories"  value="1">{{ category }}</option>
-                </select>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary">Add Skill</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert alert-success" role="alert">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table' *ngIf="category">
+                            <thead>
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Category Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ modalCategory.typeId }}</td>
+                                    <td>{{ modalCategory.typeName }}</td>
+                                    <td>{{ modalCategory.typeDescription }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <h3 class="display-4">Add New Skill</h3>
+        <form class="form-horizontal" #skillForm="ngForm" (ngSubmit)="saveSkill(skillForm.value); skillForm.reset()">
+            <div class="form-group ">
+                <label for="skillName">Skill Name :</label>
+                <input type="text"
+                       #skillTitle="ngModel"
+                       [class.is-invalid]="skillTitle.invalid && skillTitle.touched"
+                       required
+                       [(ngModel)]="skill.skillTitle"
+                       class="form-control"
+                       id="skillName"
+                       placeholder="Type in a new skill"
+                       name="skillName">
+                <small class="text-danger" [class.d-none]="skillTitle.valid || skillTitle.untouched">Skill name is required</small>
+            </div>
+            <div class="form-group ">
+                <label class="addCategory" for="skillDescription">Description :</label>
+                <textarea id="skillDescription"
+                          name="skillDesc"
+                          #skillDescription="ngModel"
+                          [class.is-invalid]="skillDescription.invalid && skillDescription.touched"
+                          required
+                          [(ngModel)]="skill.skillDescription"
+                          class="form-control"
 
+                          style="width:100%;">
+                </textarea>
+                <small class="text-danger" [class.d-none]="skillDescription.valid || skillDescription.untouched">Description is required</small>
+            </div>
+            <div class="form-group">
+                <label for="selectCategory">Category :</label>
+                <select class="custom-select"
+                        #categoryName="ngModel"
+                        [(ngModel)]="skill.categoryName"
+                        [class.is-invalid]="supHasError && SupFirstName.touched"
+                        id="selectCategory"
+                        (change)="getCategory(categoryName.value)"
+                        (blur)="getCategory(categoryName.value)"
+                        name="categorySelect">
+                    <option *ngFor="let category of distCategories" value="1">{{ category }}</option>
+                </select>
+            </div>
+            <div class="input-group-append">
+                <button type="button" class="btn btn-primary">Add Skill</button>
             </div>
         </form>
     </div>

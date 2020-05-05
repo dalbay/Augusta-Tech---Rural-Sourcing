@@ -38,10 +38,10 @@
                 </div>
             </div>
         </div>
-        <h3 class="display-4">Add New Category...</h3>
+        <h3 class="display-4">Add New Category</h3>
         <form class="form-horizontal" #categoryForm="ngForm" (ngSubmit)="saveCategory(categoryForm.value); categoryForm.reset()">
             <div class="form-group ">
-                <label class="addCategory" for="categoryName">Category Name :</label>
+                <label for="categoryName">Category Name :</label>
                 <input type="text"
                        class="form-control"
                        #typeName="ngModel"

@@ -143,9 +143,6 @@ export class EmployeeComponent {
 
 
 
-
-
-
     /* ***ng2-smart-table*** ------------------------------------*/
 
     //Setting for ng2-smart-table:

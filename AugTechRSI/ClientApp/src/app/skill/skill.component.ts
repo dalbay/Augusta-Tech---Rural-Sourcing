@@ -9,28 +9,47 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class SkillComponent implements OnInit {
 
-    public skills: AllSkill[] = [];
+    // skill properties
+    public allSkills: AllSkill[] = [];
     public categories: string[] = [];
-    public distCategories: string[] = ['Choose a Category...'];
+    public distCategories: string[];
 
+    // category properties
+    public allCategories: AllCategories[];
     //add a property to the component
     source: LocalDataSource;
+
+    //new skill property
+    skill: Skill;
 
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
-        http.get(baseUrl + 'api/Skills').subscribe(result => {
-            this.skills = result as AllSkill[];
-            this.source = new LocalDataSource(this.skills);
+        // initialize new skill;
+        this.skill = new Skill;
+        // initialize Category array
+        this.allCategories = new Array();
 
-            console.log(this.skills);
-            for (var i = 0; i < this.skills.length; i++) {
-                this.categories.push(this.skills[i].typeName);
+        // retrieve skills
+        http.get(baseUrl + 'api/Skills').subscribe(result => {
+            this.allSkills = result as AllSkill[];
+            this.source = new LocalDataSource(this.allSkills);
+
+            //gets the categories from the skills table
+            for (var i = 0; i < this.allSkills.length; i++) {
+                this.categories.push(this.allSkills[i].typeName);
             }
             console.log(this.categories);
             this.distCategories = this.categories.filter((n, i) => this.categories.indexOf(n) === i);
+            //---------------------------------------------
 
         }, error => console.error(error));
+
+        // retrieve categories
+        http.get(baseUrl + 'api/Category').subscribe(result => {
+            this.allCategories = result as AllCategories[];
+
+        }, error => console.log(error));
     };
 
     //Setting for the table:
@@ -49,9 +68,9 @@ export class SkillComponent implements OnInit {
 }
 
 
-interface Category {
-    categoryName: string;
-}
+//interface Category {
+//    categoryName: string;
+//}
 interface AllSkill {
     SkillId: number;
     SkillTitle: string;
@@ -59,6 +78,16 @@ interface AllSkill {
     typeName: string;
     totalSkilledEmployees: number;
     totalAvailableEmployees: number;
+}
+interface AllCategories {
+    TypeId: number;
+    TypeName: string;
+    TypeDescription: string;
+}
+class Skill {
+    skillTitle: string;
+    skillDescription: string;
+    categoryName: string;
 }
 
 
