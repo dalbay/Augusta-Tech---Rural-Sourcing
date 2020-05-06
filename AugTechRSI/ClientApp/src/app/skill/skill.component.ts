@@ -57,7 +57,8 @@ export class SkillComponent implements OnInit {
     };
 
     updateRecord(event) {
-        // define category list
+
+        //define category list
         var categoryList = new Array();
         categoryList.push(this.allCategories);
 
@@ -74,13 +75,19 @@ export class SkillComponent implements OnInit {
             }
         }
         console.log(this.updatedRecord);
-        return new Promise((resolve, reject) => {
+
+        var answer = window.confirm("Update data?")
+        if (answer) {
+            return new Promise((resolve, reject) => {
             console.log('updating changes');
             this.http.put(this.appUrl + 'api/Skills/' + event.newData.skillId, this.updatedRecord).subscribe(data => {
                 location.reload();
-                //this.modalCategory.typeId = savedSkill.SkillId;
             }, error => console.error(error));
         })
+        }
+        else {
+            return;
+        }
     }
 
 

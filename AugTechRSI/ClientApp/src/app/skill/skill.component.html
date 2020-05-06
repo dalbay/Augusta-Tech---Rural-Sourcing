@@ -1,43 +1,44 @@
-﻿
-<p *ngIf="!skills"><em>Loading...</em></p>
-<!------------Add Skill Form------------------------->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="alert alert-success" role="alert">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <table class='table' *ngIf="category">
-                            <thead>
-                                <tr>
-                                    <th>Category ID</th>
-                                    <th>Category Name</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ modalCategory.typeId }}</td>
-                                    <td>{{ modalCategory.typeName }}</td>
-                                    <td>{{ modalCategory.typeDescription }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+﻿<!------------Add Skill Form------------------------->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="alert alert-success" role="alert">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Category was successfully created!</h5>
                 </div>
             </div>
+            <div class="modal-body">
+                <table class='table' *ngIf="category">
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ modalCategory.typeId }}</td>
+                            <td>{{ modalCategory.typeName }}</td>
+                            <td>{{ modalCategory.typeDescription }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <h3 class="display-4">Add New Skill</h3>
+    </div>
+</div><div class="jumbotron jumbotron-fluid">
+
+    <div class="container">
+
+
         <form class="form-horizontal" #skillForm="ngForm" (ngSubmit)="saveSkill(skillForm.value); skillForm.reset()">
+            <h3 class="display-4">Add New Skill</h3>
+            <label id="newSkill">herer is some text</label>
             <div class="form-group ">
                 <label for="skillName">Skill Name :</label>
                 <input type="text"
@@ -60,7 +61,6 @@
                           required
                           [(ngModel)]="allSkills.skillDescription"
                           class="form-control"
-
                           style="width:100%;">
                 </textarea>
                 <small class="text-danger" [class.d-none]="skillDescription.valid || skillDescription.untouched">Description is required</small>
@@ -88,7 +88,5 @@
 <!------------------------------------->
 <div>
     <ng2-smart-table [settings]="settings" (editConfirm)="updateRecord($event)"
-
-  [source]="source" class="table"></ng2-smart-table>
+                     [source]="source" class="table"></ng2-smart-table>
 </div>
-
