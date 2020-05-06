@@ -58,9 +58,11 @@ export class EmployeeComponent {
     lname: any;
     //form: any;
     positions: string[];
+    btn: any;
 /*----------------------------------------------------------------*/
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+
         this.http = http;
         this.appUrl = baseUrl;
         http.get(baseUrl + 'api/EmployeeInfo').subscribe(result => {
@@ -82,7 +84,11 @@ export class EmployeeComponent {
         this.employeeSkills = new EmployeeSkills();
         this.positions = ["Junior Associate", "Associate", "Analyst I", "Analyst II", "Senior I", "Senior II", "Principal"];
     };
+    refresh() {
 
+
+        alert("ok");
+    }
     //Insert into Employee Method
     public insertEmployee(http, employee) {
         return new Promise((resolve, reject) => {
