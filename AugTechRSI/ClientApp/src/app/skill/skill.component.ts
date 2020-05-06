@@ -18,7 +18,9 @@ export class SkillComponent implements OnInit {
     // all skills
     public allSkills: AllSkill[] = [];
     // new skill
-     newSkill: Skill;
+    newSkill: Skill;
+    // updated skill;
+    updatedRecord: Skill;
     // category properties
     public allCategories: AllCategories[] =[];
 
@@ -55,22 +57,32 @@ export class SkillComponent implements OnInit {
     };
 
     updateRecord(event) {
-        //this.currentRow = event.data;
-        //this.source = event.source;
-        //this.childModal.show();
-        console.log(event.newData);
+        // define category list
+        var categoryList = new Array();
+        categoryList.push(this.allCategories);
+
+        // initialize new skill
+        this.updatedRecord = new Skill();
+        this.updatedRecord.SkillID = event.newData.skillId;
+        this.updatedRecord.SkillTitle = event.newData.skillTitle;
+        this.updatedRecord.SkillDescription = event.newData.skillDescription;
+
+        // get updated skill's category id
+        for (var i = 0; i < (categoryList[0]).length; i++) {
+            if (event.newData.typeName === (categoryList[0])[i].typeName) {
+                this.updatedRecord.TypeId = (categoryList[0])[i].typeId;
+            }
+        }
+        console.log(this.updatedRecord);
+        return new Promise((resolve, reject) => {
+            console.log('updating changes');
+            this.http.put(this.appUrl + 'api/Skills/' + event.newData.skillId, this.updatedRecord).subscribe(data => {
+                location.reload();
+                //this.modalCategory.typeId = savedSkill.SkillId;
+            }, error => console.error(error));
+        })
     }
 
-    //update()
-    //update(element: any, values: any): Promise<any> {
-
-    //   // return new Promise((resolve, reject) => {
-    //      //  this.find(element).then((found) => {
-    //          ////  found = deepExtend(found, values);
-    //           // super.update(found, values).then(resolve).catch(reject);
-    //       // }).catch(reject);
-    // //   });
-    //}
 
     ngOnInit() { }
 
@@ -84,19 +96,13 @@ export class SkillComponent implements OnInit {
     }
 
     saveSkill(value) {
-        //console.log(value);
-
-        //insert into Skill
-        //var newSkill = new Skill();
         this.newSkill.SkillTitle = value.skillName;
         this.newSkill.SkillDescription = value.skillDesc;
         this.newSkill.TypeId = value.categoryId;
-        console.log(this.newSkill);
+
         return new Promise((resolve, reject) => {
             this.http.post(this.appUrl + 'api/Skills', this.newSkill).subscribe(data => {
-                //var savedSkill = data as AllSkill;
-                //this.newSkill = data as Skill;
-                console.log("saving new skill");
+
                 console.log(this.newSkill);
                 //this.modalCategory.typeId = savedSkill.SkillId;
                 var url = this.appUrl;
@@ -118,6 +124,7 @@ interface AllSkill {
 }
 
 class Skill {
+    SkillID: number;
     SkillTitle: string;
     SkillDescription: string;
     TypeId: number;
@@ -126,6 +133,12 @@ class Skill {
 
 interface AllCategories {
     TypeId: number;
+    TypeName: string;
+    TypeDescription: string;
+}
+
+class Category {
+    TypeID: number;
     TypeName: string;
     TypeDescription: string;
 }
