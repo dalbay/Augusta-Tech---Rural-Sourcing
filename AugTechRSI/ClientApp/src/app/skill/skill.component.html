@@ -72,20 +72,23 @@
                         [(ngModel)]="allCategories.typeName"
                         [class.is-invalid]="catHasError && typeName.touched"
                         id="selectCategory"
-                        name="categorySelect"
+                        name="categoryId"
                         (change)="getCategory(typeName.value)"
                         (blur)="getCategory(typeName.value)">
-                    <option *ngFor="let category of allCategories" value="{{ category.TypeId}}" >{{ category.typeName}}</option>
+                    <option *ngFor="let category of allCategories" value="{{ category.typeId}}">{{ category.typeName}}</option>
                 </select>
+                <small class="text-danger" [class.d-none]="!catHasError || typeName.untouched">Please choose a category</small>
             </div>
             <div class="input-group-append">
-                <button type="submit" class="btn btn-primary">Add Skill</button>
+                <button type="submit" [disabled]="skillForm.form.invalid || catHasError" class="btn btn-primary">Add Skill</button>
             </div>
         </form>
     </div>
 </div>
 <!------------------------------------->
 <div>
-    <ng2-smart-table [settings]="settings"  [source]="source" class="table"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" (editConfirm)="updateRecord($event)"
+
+  [source]="source" class="table"></ng2-smart-table>
 </div>
 
