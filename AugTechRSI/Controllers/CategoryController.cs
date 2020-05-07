@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AugTechRSI.Models;
+using Microsoft.AspNetCore.Authorization;  //------!
 
 namespace AugTechRSI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles="Administrator")]   //------!
     public class CategoryController : ControllerBase
     {
         private readonly RuralSourcing_HRdbContext _context;

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AugTechRSI.Models
 {
-    public partial class RuralSourcing_HRdbContext : DbContext
+    public partial class RuralSourcing_HRdbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext   //---------! :DbContext
     {
         public RuralSourcing_HRdbContext()
         {
@@ -36,6 +36,12 @@ namespace AugTechRSI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //you get this error in Package Manager Console when migrating identity:
+            //The entity type 'IdentityUserLogin<string>' requires a primary key to be defined.
+            //to get rid of this error call the base class here because you changed
+            // :DbContext to IdentityDbContext  //---------!
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity<Department>(entity =>

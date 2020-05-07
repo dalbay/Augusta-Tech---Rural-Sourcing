@@ -2,6 +2,7 @@ using AugTechRSI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -24,8 +25,12 @@ namespace AugTechRSI
         {
             //Get Connection String
             var connectionString = Configuration.GetConnectionString("RSIConnection");
+
             //Add the Service
             services.AddDbContext<RuralSourcing_HRdbContext>(cfg => cfg.UseSqlServer(connectionString));
+
+            // Adding Asp.Net Identity Services
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<RuralSourcing_HRdbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -52,6 +57,9 @@ namespace AugTechRSI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            //adding authentication middleware
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
