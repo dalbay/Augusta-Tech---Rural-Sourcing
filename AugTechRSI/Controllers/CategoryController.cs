@@ -12,7 +12,7 @@ namespace AugTechRSI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles="Administrator")]   //------!
+   // [Authorize(Roles="Administrator")]   //------!
     public class CategoryController : ControllerBase
     {
         private readonly RuralSourcing_HRdbContext _context;

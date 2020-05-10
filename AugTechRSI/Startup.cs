@@ -58,7 +58,7 @@ namespace AugTechRSI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            //adding authentication middleware
+            //adding authentication middleware (before the MVC middleware!)
             app.UseAuthentication();
 
             app.UseMvc(routes =>
