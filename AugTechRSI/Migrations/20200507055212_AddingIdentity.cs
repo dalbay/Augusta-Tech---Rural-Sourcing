@@ -47,87 +47,119 @@ namespace AugTechRSI.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Department",
-                columns: table => new
-                {
-                    DepartmentID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DepartmentName = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Department", x => x.DepartmentID);
-                });
+            migrationBuilder.AddColumn<string>(
+                name: "fieldName",
+                table: "Department",
+                nullable: true);
 
-            migrationBuilder.CreateTable(
-                name: "Level",
-                columns: table => new
-                {
-                    LevelID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LevelValue = table.Column<string>(maxLength: 50, nullable: true),
-                    LevelDescription = table.Column<string>(maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Level", x => x.LevelID);
-                });
+            //migrationBuilder.CreateTable(
+            //    name: "Department",
+            //    columns: table => new
+            //    {
+            //        DepartmentID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        DepartmentName = table.Column<string>(maxLength: 50, nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Department", x => x.DepartmentID);
+            //    });
 
-            migrationBuilder.CreateTable(
-                name: "Location",
-                columns: table => new
-                {
-                    LocationID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LocationName = table.Column<string>(maxLength: 50, nullable: false),
-                    LocationPhone = table.Column<string>(unicode: false, maxLength: 15, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Location", x => x.LocationID);
-                });
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "Level",
+            nullable: true);
 
-            migrationBuilder.CreateTable(
-                name: "SkillType",
-                columns: table => new
-                {
-                    TypeID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TypeName = table.Column<string>(maxLength: 50, nullable: false),
-                    TypeDescription = table.Column<string>(maxLength: 100, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SkillType", x => x.TypeID);
-                });
+            //migrationBuilder.CreateTable(
+            //    name: "Level",
+            //    columns: table => new
+            //    {
+            //        LevelID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        LevelValue = table.Column<string>(maxLength: 50, nullable: true),
+            //        LevelDescription = table.Column<string>(maxLength: 50, nullable: true)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Level", x => x.LevelID);
+            //    });
 
-            migrationBuilder.CreateTable(
-                name: "SOW",
-                columns: table => new
-                {
-                    SOW_ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ContractStart = table.Column<DateTime>(type: "date", nullable: false),
-                    ContractEnd = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientName = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SOW", x => x.SOW_ID);
-                });
 
-            migrationBuilder.CreateTable(
-                name: "Supervisor",
-                columns: table => new
-                {
-                    SupFirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    SupLastName = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supervisor", x => new { x.SupFirstName, x.SupLastName });
-                });
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "Location",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "Location",
+            //    columns: table => new
+            //    {
+            //        LocationID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        LocationName = table.Column<string>(maxLength: 50, nullable: false),
+            //        LocationPhone = table.Column<string>(unicode: false, maxLength: 15, nullable: true)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Location", x => x.LocationID);
+            //    });
+
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "SkillType",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "SkillType",
+            //    columns: table => new
+            //    {
+            //        TypeID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        TypeName = table.Column<string>(maxLength: 50, nullable: false),
+            //        TypeDescription = table.Column<string>(maxLength: 100, nullable: true)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_SkillType", x => x.TypeID);
+            //    });
+
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "SOW",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "SOW",
+            //    columns: table => new
+            //    {
+            //        SOW_ID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        ContractStart = table.Column<DateTime>(type: "date", nullable: false),
+            //        ContractEnd = table.Column<DateTime>(type: "date", nullable: false),
+            //        ClientName = table.Column<string>(maxLength: 50, nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_SOW", x => x.SOW_ID);
+            //    });
+
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "Supervisor",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "Supervisor",
+            //    columns: table => new
+            //    {
+            //        SupFirstName = table.Column<string>(maxLength: 50, nullable: false),
+            //        SupLastName = table.Column<string>(maxLength: 50, nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Supervisor", x => new { x.SupFirstName, x.SupLastName });
+            //    });
+
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -235,103 +267,118 @@ namespace AugTechRSI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Skill",
-                columns: table => new
-                {
-                    SkillID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SkillTitle = table.Column<string>(maxLength: 50, nullable: false),
-                    SkillDescription = table.Column<string>(maxLength: 100, nullable: true),
-                    TypeID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skill", x => x.SkillID);
-                    table.ForeignKey(
-                        name: "FK_Skill_SkillType",
-                        column: x => x.TypeID,
-                        principalTable: "SkillType",
-                        principalColumn: "TypeID",
-                        onDelete: ReferentialAction.Restrict);
-                });
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "Skill",
+            nullable: true);
 
-            migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    UserID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
-                    Position = table.Column<string>(maxLength: 50, nullable: true),
-                    DepartmentID = table.Column<int>(nullable: false),
-                    LocationID = table.Column<int>(nullable: false),
-                    SOW_ID = table.Column<int>(nullable: true),
-                    SupFirstName = table.Column<string>(maxLength: 50, nullable: true),
-                    SupLastName = table.Column<string>(maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.UserID);
-                    table.ForeignKey(
-                        name: "FK_Employee_Department",
-                        column: x => x.DepartmentID,
-                        principalTable: "Department",
-                        principalColumn: "DepartmentID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_Location",
-                        column: x => x.LocationID,
-                        principalTable: "Location",
-                        principalColumn: "LocationID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_SOW",
-                        column: x => x.SOW_ID,
-                        principalTable: "SOW",
-                        principalColumn: "SOW_ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_Supervisor",
-                        columns: x => new { x.SupFirstName, x.SupLastName },
-                        principalTable: "Supervisor",
-                        principalColumns: new[] { "SupFirstName", "SupLastName" },
-                        onDelete: ReferentialAction.Restrict);
-                });
+            //migrationBuilder.CreateTable(
+            //    name: "Skill",
+            //    columns: table => new
+            //    {
+            //        SkillID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        SkillTitle = table.Column<string>(maxLength: 50, nullable: false),
+            //        SkillDescription = table.Column<string>(maxLength: 100, nullable: true),
+            //        TypeID = table.Column<int>(nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Skill", x => x.SkillID);
+            //        table.ForeignKey(
+            //            name: "FK_Skill_SkillType",
+            //            column: x => x.TypeID,
+            //            principalTable: "SkillType",
+            //            principalColumn: "TypeID",
+            //            onDelete: ReferentialAction.Restrict);
+            //    });
 
-            migrationBuilder.CreateTable(
-                name: "EmployeeSkill",
-                columns: table => new
-                {
-                    EmpSkillID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserID = table.Column<int>(nullable: false),
-                    SkillID = table.Column<int>(nullable: false),
-                    LevelID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeeSkill", x => x.EmpSkillID);
-                    table.ForeignKey(
-                        name: "FK_EmployeeSkill_Level",
-                        column: x => x.LevelID,
-                        principalTable: "Level",
-                        principalColumn: "LevelID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EmployeeSkill_Skill",
-                        column: x => x.SkillID,
-                        principalTable: "Skill",
-                        principalColumn: "SkillID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EmployeeSkill_Employee",
-                        column: x => x.UserID,
-                        principalTable: "Employee",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                });
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "Employee",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "Employee",
+            //    columns: table => new
+            //    {
+            //        UserID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        FirstName = table.Column<string>(maxLength: 50, nullable: false),
+            //        LastName = table.Column<string>(maxLength: 50, nullable: false),
+            //        Position = table.Column<string>(maxLength: 50, nullable: true),
+            //        DepartmentID = table.Column<int>(nullable: false),
+            //        LocationID = table.Column<int>(nullable: false),
+            //        SOW_ID = table.Column<int>(nullable: true),
+            //        SupFirstName = table.Column<string>(maxLength: 50, nullable: true),
+            //        SupLastName = table.Column<string>(maxLength: 50, nullable: true)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Employee", x => x.UserID);
+            //        table.ForeignKey(
+            //            name: "FK_Employee_Department",
+            //            column: x => x.DepartmentID,
+            //            principalTable: "Department",
+            //            principalColumn: "DepartmentID",
+            //            onDelete: ReferentialAction.Restrict);
+            //        table.ForeignKey(
+            //            name: "FK_Employee_Location",
+            //            column: x => x.LocationID,
+            //            principalTable: "Location",
+            //            principalColumn: "LocationID",
+            //            onDelete: ReferentialAction.Restrict);
+            //        table.ForeignKey(
+            //            name: "FK_Employee_SOW",
+            //            column: x => x.SOW_ID,
+            //            principalTable: "SOW",
+            //            principalColumn: "SOW_ID",
+            //            onDelete: ReferentialAction.Restrict);
+            //        table.ForeignKey(
+            //            name: "FK_Employee_Supervisor",
+            //            columns: x => new { x.SupFirstName, x.SupLastName },
+            //            principalTable: "Supervisor",
+            //            principalColumns: new[] { "SupFirstName", "SupLastName" },
+            //            onDelete: ReferentialAction.Restrict);
+            //    });
+
+            migrationBuilder.AddColumn<string>(
+            name: "fieldName",
+            table: "EmployeeSkill",
+            nullable: true);
+
+            //migrationBuilder.CreateTable(
+            //    name: "EmployeeSkill",
+            //    columns: table => new
+            //    {
+            //        EmpSkillID = table.Column<int>(nullable: false)
+            //            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+            //        UserID = table.Column<int>(nullable: false),
+            //        SkillID = table.Column<int>(nullable: false),
+            //        LevelID = table.Column<int>(nullable: true)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_EmployeeSkill", x => x.EmpSkillID);
+            //        table.ForeignKey(
+            //            name: "FK_EmployeeSkill_Level",
+            //            column: x => x.LevelID,
+            //            principalTable: "Level",
+            //            principalColumn: "LevelID",
+            //            onDelete: ReferentialAction.Restrict);
+            //        table.ForeignKey(
+            //            name: "FK_EmployeeSkill_Skill",
+            //            column: x => x.SkillID,
+            //            principalTable: "Skill",
+            //            principalColumn: "SkillID",
+            //            onDelete: ReferentialAction.Restrict);
+            //        table.ForeignKey(
+            //            name: "FK_EmployeeSkill_Employee",
+            //            column: x => x.UserID,
+            //            principalTable: "Employee",
+            //            principalColumn: "UserID",
+            //            onDelete: ReferentialAction.Restrict);
+            //    });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -1,10 +1,6 @@
 ﻿
 import { RouterModule, Routes } from '@angular/router';
-
-
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { PlainLayoutComponent } from './layout/plain-layout/plain-layout.component';
-
 import { SkillComponent } from './skill/skill.component';
 import { LoginComponent } from './login/login.component';
 import { CategoryComponent } from './category/category.component';
@@ -27,7 +23,6 @@ const appRoutes: Routes = [
         ]
     },
     //No Layout Routes:
-    //{ path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'user', component: UserComponent},
     { path: '**', redirectTo: '' }
