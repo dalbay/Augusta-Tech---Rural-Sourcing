@@ -46,3 +46,26 @@ C:\Users\aygun\Downloads\Augusta-Tech---Rural-Sourcing-master\Augusta-Tech---Rur
 C:\Users\aygun\Downloads\Augusta-Tech---Rural-Sourcing-master\Augusta-Tech---Rural-Sourcing-master\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
 C:\Users\aygun\Downloads\Augusta-Tech---Rural-Sourcing-master\Augusta-Tech---Rural-Sourcing-master\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
 C:\Users\aygun\Downloads\Augusta-Tech---Rural-Sourcing-master\Augusta-Tech---Rural-Sourcing-master\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CopyComplete
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.deps.json
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.runtimeconfig.json
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.runtimeconfig.dev.json
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.dll
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\bin\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.pdb
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CoreCompileInputs.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorAssemblyInfo.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorAssemblyInfo.cs
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.AssemblyInfoInputs.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.AssemblyInfo.cs
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.TagHelpers.input.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.TagHelpers.output.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorCoreGenerate.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\Razor\Pages\Error.g.cshtml.cs
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewImports.g.cshtml.cs
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorTargetAssemblyInfo.cache
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.RazorTargetAssemblyInfo.cs
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.Views.pdb
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.dll
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\ASP.NET Core 2.2 with Angular 7.pdb
+C:\Users\aygun\OneDrive\Documents\GitHub\Augusta-Tech---Rural-Sourcing\AugTechRSI\obj\Debug\netcoreapp2.2\AugTechRSI.csproj.CopyComplete
