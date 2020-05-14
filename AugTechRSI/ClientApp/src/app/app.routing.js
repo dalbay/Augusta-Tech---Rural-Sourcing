@@ -9,6 +9,8 @@ const home_component_1 = require("./home/home.component");
 const user_component_1 = require("./user/user.component");
 const employee_component_1 = require("./employee/employee.component");
 const employees_component_1 = require("./employees/employees.component");
+//import { LoginModule } from './login/login.module';
+//import { LoginGuard } from './login/login.guard';
 const appRoutes = [
     //Admin Routes:
     {
@@ -23,7 +25,6 @@ const appRoutes = [
         ]
     },
     //No Layout Routes:
-    //{ path: '', component: LoginComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'user', component: user_component_1.UserComponent },
     { path: '**', redirectTo: '' }

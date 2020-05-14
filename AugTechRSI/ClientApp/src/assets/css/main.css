@@ -304,7 +304,7 @@ p.rsiText2 {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  padding: 150px 135px 40px 165px;
+  padding: 150px 5px 0px 15px;
 }
 
 .login100-form-title {

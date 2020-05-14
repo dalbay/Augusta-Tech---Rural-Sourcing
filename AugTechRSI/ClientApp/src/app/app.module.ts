@@ -20,6 +20,13 @@ import { EmployeesComponent } from './employees/employees.component';
 import { routing } from './app.routing';
 
 import { HomeComponent } from './home/home.component';
+
+//import { LoginModule } from './login/login.module'
+//import { RouterModule, Routes } from '@angular/router';
+//import { CommonModule } from '@angular/common';
+//import { LoginGuard } from './login/login.guard';
+
+
 import { from } from 'rxjs';
 
 
@@ -35,7 +42,7 @@ import { from } from 'rxjs';
         HomeComponent,
         UserComponent,
         EmployeeComponent,
-        EmployeesComponent
+        EmployeesComponent,
   ],
   imports: [
       BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,6 +50,9 @@ import { from } from 'rxjs';
       HttpClientModule,
       FormsModule,
       routing
+     // RouterModule, CommonModule, LoginModule,
+
+
       ],
   providers: [],
   bootstrap: [ AppComponent ]

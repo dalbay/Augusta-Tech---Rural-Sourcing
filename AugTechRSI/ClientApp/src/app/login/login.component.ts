@@ -1,5 +1,6 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+﻿import { Component } from '@angular/core';
+
+import { LoginService } from "./login.service";
 import { from } from 'rxjs';
 
 
@@ -10,14 +11,20 @@ import { from } from 'rxjs';
     styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
-    constructor(private router: Router) { }
+export class LoginComponent {
+    constructor(public authService: LoginService) { }
 
-    public onLoginClick() {
-        this.router.navigate(['/', 'skills']);
+    //public onLoginClick() {
+    //    this.router.navigate(['/', 'skills']);
+    //}
+    showError: boolean = false;
+
+    login() {
+        this.showError = false;
+        this.authService.login().subscribe(result => {
+            this.showError = !result;
+        });
     }
-
-    ngOnInit() {}
 }
 
 

@@ -41,17 +41,22 @@
     <None Remove="ClientApp\src\app\layout\admin-layout\admin-layout.component.ts" />
     <None Remove="ClientApp\src\app\layout\plain-layout\plain-layout.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
+    <None Remove="ClientApp\src\app\models\repository.ts" />
     <None Remove="ClientApp\src\app\skill\skill.component.ts" />
     <None Remove="ClientApp\src\app\user\user.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\employees\employees.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\employee\employee.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\layout\admin-layout\admin-layout.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\layout\plain-layout\plain-layout.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\repository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\skill\skill.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\user.component.ts" />
   </ItemGroup>

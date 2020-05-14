@@ -9,11 +9,14 @@ import { UserComponent } from './user/user.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeesComponent } from './employees/employees.component';
 
+//import { LoginModule } from './login/login.module';
+//import { LoginGuard } from './login/login.guard';
+
 const appRoutes: Routes = [
     //Admin Routes:
     {
         path: '',
-        component: AdminLayoutComponent,
+        component: AdminLayoutComponent,// canActivateChild:[LoginGuard],
         children: [
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'skills', component: SkillComponent },

@@ -19,6 +19,7 @@ namespace AugTechRSI.Controllers
         //variables to store stored procedure data
         private static string connection;
         List<SPGetAllEmployees> spGetAllEmployees = new List<SPGetAllEmployees>();
+        List<EmployeesSkills> spGetAllEmployeesSkills = new List<EmployeesSkills>();
 
 
         public EmployeesController(RuralSourcing_HRdbContext context)
@@ -27,6 +28,32 @@ namespace AugTechRSI.Controllers
 
             //get the connection string
             connection = context.Database.GetDbConnection().ConnectionString;
+        }
+        // Retrieve all skills from an employee via sp
+        public List<EmployeesSkills> GetEmployeesSkills(int empID)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connection))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("SP_GetEmployeeSkills", sqlConnection))
+                {
+                    sqlConnection.Open();
+                    sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.Int);
+                    sqlCommand.Parameters["@id"].Value = empID;
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlDataReader rd = sqlCommand.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        EmployeesSkills employeesSkills = new EmployeesSkills();
+                        employeesSkills.UserID = (int)rd["UserID"];
+                        employeesSkills.SkillTitle = rd["SkillTitle"].ToString();
+                        employeesSkills.SkillDescription = rd["SkillDescription"].ToString();
+                        employeesSkills.LevelValue = rd["LevelValue"].ToString();
+
+                        spGetAllEmployeesSkills.Add(employeesSkills);
+                    }
+                }
+                return spGetAllEmployeesSkills;
+            }
         }
 
         //Retrieve data with stored procedure
@@ -63,26 +90,30 @@ namespace AugTechRSI.Controllers
         {
             return getAllEmployees();
         }
-
-
         //public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         //{
         //    return await _context.Employee.ToListAsync();
         //}
 
+
+
         // GET: api/Employees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>> GetEmployee(int id)
+        public IEnumerable<EmployeesSkills> GetSkills(int id)
         {
-            var employee = await _context.Employee.FindAsync(id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return employee;
+            return GetEmployeesSkills(id);
         }
+        //public async Task<ActionResult<Employee>> GetEmployee(int id)
+        //{
+        //    var employee = await _context.Employee.FindAsync(id);
+
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return employee;
+        //}
 
         // PUT: api/Employees/5
         [HttpPut("{id}")]
